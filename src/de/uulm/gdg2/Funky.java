@@ -18,10 +18,10 @@ public class Funky extends PApplet {
 
     @Override
     public void setup() {
+
         this.background(255);
         this.noStroke();
         this.smooth();
-
 
         player = new Player(this, "./resources/song.mp3");
 
@@ -30,12 +30,14 @@ public class Funky extends PApplet {
 
     @Override
     public void draw(){
+
         RGBaColor poopColor = new RGBaColor(0, 0, 0, 100);
-        RGBaColor color = new RGBaColor(100, 0, 0, 100);
-        
+        Poop poop = new Poop(this, 50, poopColor);
+
     }
 
     public static void main(String[] args) {
+
         PApplet.main(new String[]{Funky.class.getName()});
     }
 }
