@@ -1,6 +1,9 @@
 package de.uulm.gdg2;
 
 import de.uulm.gdg2.controllers.Player;
+import de.uulm.gdg2.shapes.CustomLine;
+import de.uulm.gdg2.shapes.Poop;
+import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
 
@@ -15,6 +18,11 @@ public class Funky extends PApplet {
 
     @Override
     public void setup() {
+        this.background(255);
+        this.noStroke();
+        this.smooth();
+
+
         player = new Player(this, "./resources/song.mp3");
 
         player.startPlaying();
@@ -22,11 +30,12 @@ public class Funky extends PApplet {
 
     @Override
     public void draw(){
-        background(100);
+        RGBaColor poopColor = new RGBaColor(0, 0, 0, 100);
+        RGBaColor color = new RGBaColor(100, 0, 0, 100);
+        
     }
 
     public static void main(String[] args) {
         PApplet.main(new String[]{Funky.class.getName()});
-        System.out.println("hallo");
     }
 }
