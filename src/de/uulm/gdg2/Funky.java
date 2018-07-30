@@ -27,5 +27,6 @@ public class Funky extends PApplet {
 
     public static void main(String[] args) {
         PApplet.main(new String[]{Funky.class.getName()});
+        System.out.println("hallo");
     }
 }
