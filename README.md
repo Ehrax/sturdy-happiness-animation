@@ -7,9 +7,13 @@ at the Universtiy Ulm.
 - processing.org
 - Intellij IDEA
 
-## processing libaries
+## Processing libraries
+- Ani 
+- Minim
 
 # How to install
 ```bash 
 git clone https://github.com/Ehrax/sturdy-happiness-animation.git
 ```
+
+open with you're idea
