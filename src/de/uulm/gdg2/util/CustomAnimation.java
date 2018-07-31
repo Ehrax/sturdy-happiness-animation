@@ -9,6 +9,8 @@ public class CustomAnimation implements Comparable<CustomAnimation> {
     public float duration;
     public float value;
 
+    public float delay;
+
     public String params;
     public Easing mode;
 
@@ -16,8 +18,18 @@ public class CustomAnimation implements Comparable<CustomAnimation> {
 
         this.duration = duration;
         this.start = start;
-        this.end = end;
         this.value = value;
+        this.params = params;
+        this.mode = mode;
+    }
+
+    public CustomAnimation(float start, float end, float duration, float value, float delay, String params, Easing mode) {
+
+        this.start = start;
+        this.end = end;
+        this.duration = duration;
+        this.value = value;
+        this.delay = delay;
         this.params = params;
         this.mode = mode;
     }

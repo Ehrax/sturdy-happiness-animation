@@ -17,20 +17,28 @@ public abstract class AnimationImport {
         JSONObject json = canvas.loadJSONObject(filePath);
         JSONArray array = json.getJSONArray(type);
 
+        CustomAnimation custAnim;
+
         ArrayList<CustomAnimation> anisAnimations = new ArrayList<CustomAnimation>();
 
         for (int i = 0; i < array.size(); i++) {
             JSONObject o = array.getJSONObject(i);
+
             float start = o.getFloat("start");
             float end = o.getFloat("end");
             float duration = o.getFloat("duration");
             float value = o.getFloat("value");
+
             String easingString = o.getString("easing");
             Easing easing = determineEasing(easingString);
+            if (o.hasKey("delay")) {
+                float delay = o.getFloat("delay");
+                custAnim = new CustomAnimation(start, end, duration, value, delay, type, easing);
+            } else {
+                custAnim = new CustomAnimation(start, end, duration, value, type, easing);
+            }
 
-            CustomAnimation custAnimation = new CustomAnimation(start, end, duration, value, type, easing);
-
-            anisAnimations.add(custAnimation);
+            anisAnimations.add(custAnim);
         }
 
         return anisAnimations;
@@ -46,8 +54,20 @@ public abstract class AnimationImport {
             case "sine_out":
                 e = AniConstants.SINE_OUT;
                 break;
+            case "sine_in_out":
+                e = AniConstants.SINE_IN_OUT;
+                break;
+            case "cubic_in":
+                e = AniConstants.CUBIC_IN;
+                break;
+            case "cubic_in_out":
+                e = AniConstants.CUBIC_IN_OUT;
+            break;
             case "cubic_out":
                 e = AniConstants.CUBIC_OUT;
+                break;
+            case "bounce_in":
+                e = AniConstants.BOUNCE_IN;
                 break;
             case "bounce_out":
                 e = AniConstants.BOUNCE_OUT;

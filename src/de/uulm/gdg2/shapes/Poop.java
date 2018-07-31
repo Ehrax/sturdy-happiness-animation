@@ -28,7 +28,7 @@ public class Poop {
     public Poop(PApplet canvas, RGBaColor primaryColor, RGBaColor secondaryColor) {
 
         this.canvas = canvas;
-        this.scale = 0.0f;
+        this.scale = 10;
 
         this.posX = canvas.width / 2;
         this.posY = canvas.height / 2;
@@ -61,13 +61,14 @@ public class Poop {
             return;
         }
 
-        // here starts the animation
-        CustomAnimation ani = anis.get(0);
+        CustomAnimation ani = anis.remove(0);
         Ani.to(this, ani.duration, ani.params, ani.value, ani.mode);
 
-        System.out.println(scale);
-
-        anis.remove(0);
+        if (ani.delay != 0) {
+            ani.start += ani.delay;
+            anis.add(ani);
+            Collections.sort(anis);
+        }
     }
 
     public void updateToPrimaryColor() {
