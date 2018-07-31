@@ -22,11 +22,13 @@ public abstract class AnimationImport {
         for (int i = 0; i < array.size(); i++) {
             JSONObject o = array.getJSONObject(i);
             float start = o.getFloat("start");
-            float duration = o.getFloat("end") - start;
+            float end = o.getFloat("end");
+            float duration = o.getFloat("duration");
             float value = o.getFloat("value");
             String easingString = o.getString("easing");
             Easing easing = determineEasing(easingString);
-            CustomAnimation custAnimation = new CustomAnimation(start, duration, value, type, easing);
+
+            CustomAnimation custAnimation = new CustomAnimation(start, end, duration, value, type, easing);
 
             anisAnimations.add(custAnimation);
         }

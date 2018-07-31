@@ -17,7 +17,8 @@ public class Poop {
 
     public float posX;
     public float posY;
-    public float size;
+
+    public float scale;
 
     public ArrayList<CustomAnimation> anis;
 
@@ -27,7 +28,7 @@ public class Poop {
     public Poop(PApplet canvas, RGBaColor primaryColor, RGBaColor secondaryColor) {
 
         this.canvas = canvas;
-        this.size = 0.2f;
+        this.scale = 0.0f;
 
         this.posX = canvas.width / 2;
         this.posY = canvas.height / 2;
@@ -36,13 +37,13 @@ public class Poop {
         this.secondaryColor = secondaryColor;
 
         Ani.init(canvas);
-        anis = AnimationImport.importAnimation(this.canvas, ANIMATIN_PATH, "size");
+        anis = AnimationImport.importAnimation(this.canvas, ANIMATIN_PATH, "scale");
         Collections.sort(anis);
     }
 
     public void draw() {
         // draw inner ellipse
-        canvas.ellipse(posX, posY, size, size);
+        canvas.ellipse(posX, posY, scale, scale);
         canvas.fill(
                 this.primaryColor.v1,
                 this.primaryColor.v2,
@@ -60,9 +61,11 @@ public class Poop {
             return;
         }
 
+        // here starts the animation
         CustomAnimation ani = anis.get(0);
         Ani.to(this, ani.duration, ani.params, ani.value, ani.mode);
-        System.out.println(size);
+
+        System.out.println(scale);
 
         anis.remove(0);
     }
