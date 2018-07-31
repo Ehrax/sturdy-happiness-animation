@@ -18,11 +18,11 @@ public class CustomLine {
         this.width = width;
     }
 
-    public void update(float posX, float posY, float width) {
+    public void draw() {
 
     }
 
-    public void show () {
+    public void update(float cue) {
 
     }
 }

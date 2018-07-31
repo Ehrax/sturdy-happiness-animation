@@ -6,42 +6,54 @@ import de.uulm.gdg2.shapes.OuterShape;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 
+
 import processing.core.PApplet;
 
 public class Funky extends PApplet {
 
     private Player player;
 
-    RGBaColor poopColor = new RGBaColor(0, 0, 0, 255);
-    RGBaColor outerSColor = new RGBaColor(0,0,0,255);
-    Poop poop = new Poop(this, 20, poopColor);
-    OuterShape outerS = new OuterShape(this,-10,400,0,20,outerSColor);
+    public Poop poop;
+
+    public RGBaColor poopPrimaryColor;
+    public RGBaColor poopSecondaryColor;
+
+    public RGBaColor backgroundColor;
 
     @Override
     public void settings() {
         size(1240, 720);
+        smooth(8);
     }
 
     @Override
     public void setup() {
-        this.background(255);
+        backgroundColor = new RGBaColor(255, 255, 255, 255);
 
-        this.noStroke();
+        background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3, backgroundColor.a);
 
+        noStroke();
         player = new Player(this, "./resources/song.mp3");
+        player.startPlaying();
 
+        poopPrimaryColor = new RGBaColor(0, 0, 0, 255);
+        poopSecondaryColor = new RGBaColor(255, 255, 255, 255);
+        poop = new Poop(this,  poopPrimaryColor, poopSecondaryColor);
     }
 
     @Override
     public void draw(){
-        translate(width/2,height/2);
-        poop.update();
-        poop.display();
 
-        outerS.update();
-        outerS.display();
+        // Color reset
+        background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3, backgroundColor.a);
 
+        /*
+         * TODO: this goes later to GUI
+         */
+        poop.draw();
+        poop.update(player.getSong().position());
     }
+
 
     public void keyPressed(){
         if ((player.getSong().isPlaying())){
