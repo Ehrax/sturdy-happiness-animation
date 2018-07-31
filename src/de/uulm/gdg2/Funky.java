@@ -32,7 +32,6 @@ public class Funky extends PApplet {
 
         background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3, backgroundColor.a);
 
-        noStroke();
         player = new Player(this, "./resources/song.mp3");
         player.startPlaying();
 
@@ -52,6 +51,20 @@ public class Funky extends PApplet {
          */
         poop.draw();
         poop.update(player.getSong().position());
+
+        float innerRadius = 200;
+        float autoRadius = 600;
+
+        stroke(0);
+        strokeWeight(100);
+        strokeCap(1);
+
+        float mx = width / 2;
+        float my = height / 2;
+
+        for (float i = 0; i < TWO_PI; i+= TWO_PI/10) {
+            line(cos(i) * innerRadius + mx, sin(i) * innerRadius + my, cos(i) * autoRadius + mx, sin(i) * autoRadius + my);
+        }
     }
 
 

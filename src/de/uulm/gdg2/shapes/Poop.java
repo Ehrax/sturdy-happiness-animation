@@ -11,7 +11,7 @@ import java.util.Collections;
 import processing.core.PApplet;
 
 public class Poop {
-    public static String ANIMATIN_PATH =  "./resources/times/poop.json";
+    public static String ANIMATIN_PATH =  "./resources/times/poop_anim.json";
 
     public PApplet canvas;
 
