@@ -1,6 +1,8 @@
 package de.uulm.gdg2;
 
 import de.uulm.gdg2.controllers.Player;
+import de.uulm.gdg2.shapes.CustomLine;
+import de.uulm.gdg2.shapes.OuterShape;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 
@@ -12,6 +14,7 @@ public class Funky extends PApplet {
     private Player player;
 
     public Poop poop;
+
     public RGBaColor poopPrimaryColor;
     public RGBaColor poopSecondaryColor;
 
@@ -49,6 +52,20 @@ public class Funky extends PApplet {
          */
         poop.draw();
         poop.update(player.getSong().position());
+    }
+
+
+    public void keyPressed(){
+        if ((player.getSong().isPlaying())){
+            player.pausePlaying();
+        }
+        else if (player.getSong().position() == player.getSong().length()){
+            player.getSong().rewind();
+            player.getSong().play();
+        }
+        else{
+            player.getSong().play();
+        }
     }
 
     public static void main(String[] args) {
