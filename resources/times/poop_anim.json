@@ -1,7 +1,7 @@
 {
   "scale": [
-    {"start": 245, "end": 350, "value": 40, "easing": "cubic_in", "duration": 0.1, "delay": 1035},
-    {"start": 380, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.6, "delay": 1035}
+    {"start": 245, "end": 350, "value": 40, "easing": "cubic_in", "duration": 0.1, "delay": 1030},
+    {"start": 380, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.6, "delay": 1030}
   ],
   "scale_old": [
     {"start": 245, "end": 350, "value": 40, "easing": "cubic_in", "duration": 0.1},
@@ -34,24 +34,5 @@
     {"start": 13750, "end": 14350, "value": 10, "easing": "bounce_in_out", "duration": 0.6},
     {"start": 14650, "end": 14750, "value": 40, "easing": "cubic_in", "duration": 0.1},
     {"start": 14780, "end": 15380, "value": 10, "easing": "bounce_in_out", "duration": 0.6},
-  ],
-  "old stuff": [
-    {"start": 14648, "end": 14796, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 15678, "end": 15820, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 16702, "end": 16857, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 17731, "end": 17881, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 18762, "end": 18916, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 19788, "end": 19940, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 20820, "end": 21010, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 21847, "end": 22011, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 23902, "end": 24071, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 24931, "end": 25083, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 25956, "end": 26108, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 26991, "end": 27130, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 28020, "end": 28176, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 29049, "end": 29201, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 30073, "end": 30219, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 31102, "end": 31250, "value": 0.7, "easing": "linear", "duration": 500},
-    {"start": 32146, "end": 32277, "value": 0.7, "easing": "linear", "duration": 500}
   ]
 }

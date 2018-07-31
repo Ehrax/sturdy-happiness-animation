@@ -1,8 +1,6 @@
 package de.uulm.gdg2;
 
 import de.uulm.gdg2.controllers.Player;
-import de.uulm.gdg2.shapes.CustomLine;
-import de.uulm.gdg2.shapes.OuterShape;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 
@@ -23,6 +21,7 @@ public class Funky extends PApplet {
     @Override
     public void settings() {
         size(1240, 720);
+        noStroke();
         smooth(8);
     }
 
