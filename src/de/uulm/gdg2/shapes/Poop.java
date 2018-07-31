@@ -19,18 +19,17 @@ public class Poop {
 
         this.canvas = canvas;
         this.size = size;
-        this.posX = canvas.width / 2;
-        this.posY = canvas.height / 2;
         this.color = color;
     }
 
-    public void draw() {
+    public void display() {
 
-        canvas.ellipse(posX, posY, size, size);
         canvas.fill(color.v1, color.v2, color.v3, color.a);
+        canvas.ellipse(posX, posY, size, size);
     }
 
     public void update() {
-
+        if (size < 50)
+        size = size + 2;
     }
 }

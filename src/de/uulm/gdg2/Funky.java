@@ -2,6 +2,7 @@ package de.uulm.gdg2;
 
 import de.uulm.gdg2.controllers.Player;
 import de.uulm.gdg2.shapes.CustomLine;
+import de.uulm.gdg2.shapes.OuterShape;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 
@@ -11,6 +12,11 @@ public class Funky extends PApplet {
 
     private Player player;
 
+    RGBaColor poopColor = new RGBaColor(0, 0, 0, 255);
+    RGBaColor outerSColor = new RGBaColor(0,0,0,255);
+    Poop poop = new Poop(this, 20, poopColor);
+    OuterShape outerS = new OuterShape(this,-10,400,0,20,outerSColor);
+
     @Override
     public void settings() {
         size(1240, 720);
@@ -18,22 +24,36 @@ public class Funky extends PApplet {
 
     @Override
     public void setup() {
-
         this.background(255);
+
         this.noStroke();
-        this.smooth();
 
         player = new Player(this, "./resources/song.mp3");
 
-        player.startPlaying();
     }
 
     @Override
     public void draw(){
+        translate(width/2,height/2);
+        poop.update();
+        poop.display();
 
-        RGBaColor poopColor = new RGBaColor(0, 0, 0, 100);
-        Poop poop = new Poop(this, 50, poopColor);
+        outerS.update();
+        outerS.display();
 
+    }
+
+    public void keyPressed(){
+        if ((player.getSong().isPlaying())){
+            player.pausePlaying();
+        }
+        else if (player.getSong().position() == player.getSong().length()){
+            player.getSong().rewind();
+            player.getSong().play();
+        }
+        else{
+            player.getSong().play();
+        }
     }
 
     public static void main(String[] args) {
