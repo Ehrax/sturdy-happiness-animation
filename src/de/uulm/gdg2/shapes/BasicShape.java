@@ -19,10 +19,13 @@ public abstract class BasicShape {
     public ArrayList<CustomAnimation> anis;
     public String[] aniModes;
 
-    public BasicShape(PApplet canvas,
-                      RGBaColor primaryColor,
-                      RGBaColor secondaryColor,
-                      String animationPath, String[] aniModes) {
+    public BasicShape(
+            PApplet canvas,
+            RGBaColor primaryColor,
+            RGBaColor secondaryColor,
+            String animationPath,
+            String[] aniModes
+    ) {
 
         this.canvas = canvas;
         this.primaryColor = primaryColor;
@@ -30,33 +33,24 @@ public abstract class BasicShape {
         this.anis = new ArrayList<>();
         this.aniModes = aniModes;
 
-        Ani.init(canvas);
+        if (!animationPath.equals("") && aniModes.length != 0) {
 
-        for (String mode : aniModes) {
-            anis.addAll(AnimationImport.importAnimation(this.canvas, animationPath, mode));
+            Ani.init(canvas);
+
+            for (String mode : aniModes) {
+                anis.addAll(AnimationImport.importAnimation(this.canvas, animationPath, mode));
+            }
+
+            Collections.sort(this.anis);
         }
-
-        Collections.sort(this.anis);
     }
 
-    abstract void draw();
-    abstract void update(float cue);
+    public abstract void draw();
 
-    public void updateToPrimaryColor() {
-        canvas.fill(
-            primaryColor.v1,
-            primaryColor.v2,
-            primaryColor.v3,
-            primaryColor.a
-        );
-    }
+    public abstract void update(float cue);
 
-    public void updateToSecondaryColor() {
-        canvas.fill(
-            secondaryColor.v1,
-            secondaryColor.v2,
-            secondaryColor.v3,
-            secondaryColor.a
-        );
-    }
+    public abstract void updateToPrimaryColor();
+
+    public abstract void updateToSecondaryColor();
+
 }

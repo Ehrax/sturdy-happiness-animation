@@ -15,16 +15,19 @@ public class Poop extends BasicShape {
 
     public float scale;
 
-    public Poop(PApplet canvas,
-                RGBaColor primaryColor,
-                RGBaColor secondaryColor,
-                String animationPath,
-                float posX,
-                float posY,
-                float scale,
-                String[] aniModes) {
+    public Poop(
+            PApplet canvas,
+            RGBaColor primaryColor,
+            RGBaColor secondaryColor,
+            String animationPath,
+            float posX,
+            float posY,
+            float scale,
+            String[] aniModes
+    ) {
 
         super(canvas, primaryColor, secondaryColor, animationPath, aniModes);
+
 
         this.posX = posX;
         this.posY = posY;
@@ -32,16 +35,20 @@ public class Poop extends BasicShape {
         this.scale = scale;
     }
 
+    @Override
     public void draw() {
-        canvas.ellipse(posX, posY, scale, scale);
+
+        canvas.noStroke();
         canvas.fill(
                 this.primaryColor.v1,
                 this.primaryColor.v2,
                 this.primaryColor.v3,
                 this.primaryColor.a
         );
+        canvas.ellipse(posX, posY, scale, scale);
     }
 
+    @Override
     public void update(float cue) {
 
         if (anis.size() == 0) {
@@ -60,5 +67,29 @@ public class Poop extends BasicShape {
             anis.add(ani);
             Collections.sort(anis);
         }
+    }
+
+    @Override
+    public void updateToPrimaryColor() {
+
+        canvas.fill(
+                this.primaryColor.v1,
+                this.primaryColor.v2,
+                this.primaryColor.v3,
+                this.primaryColor.a
+        );
+        canvas.ellipse(posX, posY, scale, scale);
+    }
+
+    @Override
+    public void updateToSecondaryColor() {
+
+        canvas.fill(
+                this.secondaryColor.v1,
+                this.secondaryColor.v2,
+                this.secondaryColor.v3,
+                this.secondaryColor.a
+        );
+        canvas.ellipse(posX, posY, scale, scale);
     }
 }

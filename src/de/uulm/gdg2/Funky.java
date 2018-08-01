@@ -1,20 +1,26 @@
 package de.uulm.gdg2;
 
 import de.uulm.gdg2.controllers.Player;
+import de.uulm.gdg2.shapes.LineCircle;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
-
 
 import processing.core.PApplet;
 
 public class Funky extends PApplet {
 
-    private Player player;
+    public static String SONG_PATH = "./resources/song.mp3";
 
+    public Player player;
+
+    public RGBaColor primaryColor;
+    public RGBaColor secondaryColor;
+
+    // our elements
     public Poop poop;
-
-    public RGBaColor poopPrimaryColor;
-    public RGBaColor poopSecondaryColor;
+    public LineCircle innerCircle;
+    public LineCircle outerCircle;
+    public LineCircle threeCircle;
 
     public RGBaColor backgroundColor;
 
@@ -26,34 +32,76 @@ public class Funky extends PApplet {
 
     @Override
     public void setup() {
-        backgroundColor = new RGBaColor(255, 255, 255, 255);
+        // setting up colors that we use :)
+        primaryColor = new RGBaColor(0, 0, 0, 255);
+        secondaryColor = new RGBaColor(255, 255, 255, 255);
 
+        // set up background color of canvas
+        backgroundColor = secondaryColor;
         background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3, backgroundColor.a);
 
-        player = new Player(this, "./resources/song.mp3");
+        // setting up player to play our song
+        player = new Player(this, SONG_PATH);
         player.startPlaying();
 
-        poopPrimaryColor = new RGBaColor(0, 0, 0, 255);
-        poopSecondaryColor = new RGBaColor(255, 255, 255, 255);
-
-        String animationPath = "./resources/times/poop_anim.json";
+        // Poop related stuff
+        String poopAnimationPath = "./resources/times/poop_anim.json";
         String[] poopAnimations = {"scale"};
-
-        poop = new Poop(this,
-                poopPrimaryColor,
-                poopSecondaryColor,
-                animationPath,
+        poop = new Poop(
+                this,
+                primaryColor,
+                secondaryColor,
+                poopAnimationPath,
                 width/2,
                 height/2,
                 40,
                 poopAnimations);
+
+        // inner line circle related stuff
+        String innerLineCircleAnimationPath = "";
+        String[] innerLineCircleAnimations = {};
+        innerCircle = new LineCircle(
+                this,
+                primaryColor,
+                secondaryColor,
+                innerLineCircleAnimationPath,
+                innerLineCircleAnimations,
+                30,
+                35,
+                0,
+                TWO_PI,
+                1,
+            45
+        );
+
+        // outer line circle related stuff
+        String outerLineCircleAnimationPath = "";
+        String[] outerLineCircleAnimations = {};
+        outerCircle = new LineCircle(
+                this,
+                primaryColor,
+                secondaryColor,
+                outerLineCircleAnimationPath,
+                outerLineCircleAnimations,
+                400,
+                1300,
+                0,
+                TWO_PI,
+                50,
+               20
+        );
     }
 
     @Override
     public void draw(){
 
-        // Color reset
-        background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3, backgroundColor.a);
+        // is needed because each frame we redraw our background :)
+        background(
+                backgroundColor.v1,
+                backgroundColor.v2,
+                backgroundColor.v3,
+                backgroundColor.a
+        );
 
         /*
          * TODO: this goes later to GUI
@@ -61,33 +109,11 @@ public class Funky extends PApplet {
         poop.draw();
         poop.update(player.getSong().position());
 
-        float innerRadius = 200;
-        float autoRadius = 50000;
+        innerCircle.draw();
+        innerCircle.update(player.getSong().position());
 
-        stroke(0);
-        strokeWeight(2);
-        strokeCap(1);
-
-        float mx = width / 2;
-        float my = height / 2;
-
-        for (float i = 0; i < TWO_PI; i+= TWO_PI/500) {
-            line(cos(i) * innerRadius + mx, sin(i) * innerRadius + my, cos(i) * autoRadius + mx, sin(i) * autoRadius + my);
-        }
-    }
-
-
-    public void keyPressed(){
-        if ((player.getSong().isPlaying())){
-            player.pausePlaying();
-        }
-        else if (player.getSong().position() == player.getSong().length()){
-            player.getSong().rewind();
-            player.getSong().play();
-        }
-        else{
-            player.getSong().play();
-        }
+        outerCircle.draw();
+        outerCircle.update(player.getSong().position());
     }
 
     public static void main(String[] args) {
