@@ -21,7 +21,6 @@ public class Funky extends PApplet {
     @Override
     public void settings() {
         size(1240, 720);
-        noStroke();
         smooth(8);
     }
 
@@ -36,7 +35,18 @@ public class Funky extends PApplet {
 
         poopPrimaryColor = new RGBaColor(0, 0, 0, 255);
         poopSecondaryColor = new RGBaColor(255, 255, 255, 255);
-        poop = new Poop(this,  poopPrimaryColor, poopSecondaryColor);
+
+        String animationPath = "./resources/times/poop_anim.json";
+        String[] poopAnimations = {"scale"};
+
+        poop = new Poop(this,
+                poopPrimaryColor,
+                poopSecondaryColor,
+                animationPath,
+                width/2,
+                height/2,
+                40,
+                poopAnimations);
     }
 
     @Override
@@ -52,16 +62,16 @@ public class Funky extends PApplet {
         poop.update(player.getSong().position());
 
         float innerRadius = 200;
-        float autoRadius = 600;
+        float autoRadius = 50000;
 
         stroke(0);
-        strokeWeight(100);
+        strokeWeight(2);
         strokeCap(1);
 
         float mx = width / 2;
         float my = height / 2;
 
-        for (float i = 0; i < TWO_PI; i+= TWO_PI/10) {
+        for (float i = 0; i < TWO_PI; i+= TWO_PI/500) {
             line(cos(i) * innerRadius + mx, sin(i) * innerRadius + my, cos(i) * autoRadius + mx, sin(i) * autoRadius + my);
         }
     }

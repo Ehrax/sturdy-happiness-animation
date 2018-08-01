@@ -1,9 +1,9 @@
 {
   "scale": [
-    {"start": 245, "end": 350, "value": 40, "easing": "cubic_in", "duration": 0.1, "delay": 1030},
-    {"start": 380, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.6, "delay": 1030}
+    {"start": 165, "end": 350, "value": 40, "easing": "cubic_in", "duration": 0.1, "delay": 1025},
+    {"start": 290, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.85, "delay": 1025}
   ],
-  "scale_old": [
+  "scale_": [
     {"start": 245, "end": 350, "value": 40, "easing": "cubic_in", "duration": 0.1},
     {"start": 380, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.6},
     {"start": 1250, "end": 1350, "value": 40, "easing": "cubic_in", "duration": 0.1},
@@ -33,6 +33,6 @@
     {"start": 13620, "end": 13720, "value": 40, "easing": "cubic_in", "duration": 0.1},
     {"start": 13750, "end": 14350, "value": 10, "easing": "bounce_in_out", "duration": 0.6},
     {"start": 14650, "end": 14750, "value": 40, "easing": "cubic_in", "duration": 0.1},
-    {"start": 14780, "end": 15380, "value": 10, "easing": "bounce_in_out", "duration": 0.6},
+    {"start": 14780, "end": 15380, "value": 10, "easing": "bounce_in_out", "duration": 0.6}
   ]
 }

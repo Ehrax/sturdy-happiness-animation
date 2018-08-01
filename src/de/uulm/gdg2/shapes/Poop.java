@@ -52,10 +52,8 @@ public class Poop extends BasicShape {
         }
 
         CustomAnimation ani = anis.remove(0);
-        Ani.to(this, ani.duration, ani.params, ani.value, ani.mode);
 
-        System.out.println("cue time " + cue);
-        System.out.println("ani start " + ani.start);
+        Ani.to(this, ani.duration, ani.params, ani.value, ani.mode);
 
         if (ani.delay != 0) {
             ani.start += ani.delay;
