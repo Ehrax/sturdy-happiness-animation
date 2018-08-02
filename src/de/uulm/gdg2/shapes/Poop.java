@@ -38,6 +38,8 @@ public class Poop extends BasicShape {
     @Override
     public void draw() {
 
+        canvas.pushMatrix();
+        canvas.translate(posX, posY);
         canvas.noStroke();
         canvas.fill(
                 this.primaryColor.v1,
@@ -45,7 +47,8 @@ public class Poop extends BasicShape {
                 this.primaryColor.v3,
                 this.primaryColor.a
         );
-        canvas.ellipse(posX, posY, scale, scale);
+        canvas.ellipse(0, 0, scale, scale);
+        canvas.popMatrix();
     }
 
     @Override

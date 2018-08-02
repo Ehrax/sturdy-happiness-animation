@@ -1,6 +1,7 @@
 package de.uulm.gdg2;
 
 import de.uulm.gdg2.controllers.Player;
+import de.uulm.gdg2.shapes.ArcCircle;
 import de.uulm.gdg2.shapes.LineCircle;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
@@ -13,20 +14,22 @@ public class Funky extends PApplet {
 
     public Player player;
 
+    // our colors
     public RGBaColor primaryColor;
     public RGBaColor secondaryColor;
+    public RGBaColor backgroundColor;
 
     // our elements
     public Poop poop;
     public LineCircle innerCircle;
     public LineCircle outerCircle;
-    public LineCircle threeCircle;
-
-    public RGBaColor backgroundColor;
+    public LineCircle threeLineCircle;
+    public ArcCircle arcCircle;
 
     @Override
     public void settings() {
         size(1240, 720);
+        fullScreen();
         smooth(8);
     }
 
@@ -58,14 +61,10 @@ public class Funky extends PApplet {
                 poopAnimations);
 
         // inner line circle related stuff
-        String innerLineCircleAnimationPath = "";
-        String[] innerLineCircleAnimations = {};
         innerCircle = new LineCircle(
                 this,
                 primaryColor,
                 secondaryColor,
-                innerLineCircleAnimationPath,
-                innerLineCircleAnimations,
                 30,
                 35,
                 0,
@@ -75,21 +74,34 @@ public class Funky extends PApplet {
         );
 
         // outer line circle related stuff
-        String outerLineCircleAnimationPath = "";
-        String[] outerLineCircleAnimations = {};
         outerCircle = new LineCircle(
                 this,
                 primaryColor,
                 secondaryColor,
-                outerLineCircleAnimationPath,
-                outerLineCircleAnimations,
                 400,
                 1300,
                 0,
                 TWO_PI,
-                50,
-               20
+                20,
+              40
         );
+
+        // inner arc circle
+        arcCircle = new ArcCircle(
+                this,
+                primaryColor,
+                secondaryColor,
+                3,
+                25,
+                180,
+                PI/16
+        );
+
+        updateOuterLines();
+    }
+
+    public void updateOuterLines() {
+        outerCircle.lines.get(0).weight = 40;
     }
 
     @Override
@@ -114,6 +126,9 @@ public class Funky extends PApplet {
 
         outerCircle.draw();
         outerCircle.update(player.getSong().position());
+
+        arcCircle.draw();
+        arcCircle.update(player.getSong().position());
     }
 
     public static void main(String[] args) {

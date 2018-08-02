@@ -45,6 +45,13 @@ public abstract class BasicShape {
         }
     }
 
+    public BasicShape(PApplet canvas, RGBaColor primaryColor, RGBaColor secondaryColor) {
+
+        this.canvas = canvas;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
+    }
+
     public abstract void draw();
 
     public abstract void update(float cue);

@@ -5,13 +5,15 @@ import de.uulm.gdg2.util.RGBaColor;
 import processing.core.PApplet;
 
 public class Line extends BasicShape {
-    float x1;
-    float y1;
+    public float x1;
+    public float y1;
 
-    float x2;
-    float y2;
+    public float x2;
+    public float y2;
 
-    float weight;
+    public float weight;
+
+    public float angle = 0;
 
     public Line(PApplet canvas,
                 RGBaColor primaryColor,
@@ -29,12 +31,16 @@ public class Line extends BasicShape {
         this.x2 = x2;
         this.y2 = y2;
 
-        canvas.strokeWeight(weight);
         canvas.strokeCap(1);
     }
 
     @Override
     public void draw() {
+
+        canvas.pushMatrix();
+        canvas.strokeWeight(weight);
+        canvas.translate(canvas.width / 2, canvas.height / 2);
+        canvas.rotate(angle);
         canvas.stroke(
                 this.primaryColor.v1,
                 this.primaryColor.v2,
@@ -42,6 +48,7 @@ public class Line extends BasicShape {
                 this.primaryColor.a
         );
         canvas.line(x1, y1, x2, y2);
+        canvas.popMatrix();
     }
 
     @Override
