@@ -75,17 +75,9 @@ public class LineCircle extends BasicShape {
     @Override
     public void update(float cue) {
 
-        
-    }
-
-    public void drawThreeLinesThinner() {
-
-        Random rnd = new Random();
-        int rndNumber = rnd.nextInt(lines.size() + 1);
-
-        Line firstLine = lines.get(rndNumber);
-        Line secondLine = rndNumber + 1 > lines.size() ? lines.get(rndNumber % 40) : lines.get(rndNumber + 1);
-        Line thirdLine = rndNumber - 1 < 0 ? lines.get(40) : lines.get(rndNumber - 1);
+        for (Line line: lines) {
+            line.update(cue);
+        }
     }
 
     @Override

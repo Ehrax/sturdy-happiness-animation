@@ -61,6 +61,14 @@ public class ArcCircle extends BasicShape {
     }
 
     @Override
+    public void update(float cue) {
+
+        for (Arc arc: arcs) {
+            arc.update(cue);
+        }
+    }
+
+    @Override
     public void draw() {
 
         for (Arc arc : arcs) {
