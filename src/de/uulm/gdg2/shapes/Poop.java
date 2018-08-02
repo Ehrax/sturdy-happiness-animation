@@ -1,6 +1,7 @@
 package de.uulm.gdg2.shapes;
 
 import de.looksgood.ani.Ani;
+import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
@@ -63,13 +64,15 @@ public class Poop extends BasicShape {
 
         CustomAnimation ani = anis.remove(0);
 
-        Ani.to(this, ani.duration, ani.params, ani.value, ani.mode);
+        activeAnimations.add(Ani.to(this, ani.duration, ani.params, ani.value, ani.mode));
 
         if (ani.delay != 0) {
             ani.start += ani.delay;
             anis.add(ani);
             Collections.sort(anis);
         }
+
+        activeAnimations.removeIf(AniCore::isEnded);
     }
 
     @Override

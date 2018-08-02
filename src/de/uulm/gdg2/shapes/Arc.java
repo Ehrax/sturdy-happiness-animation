@@ -61,7 +61,7 @@ public class Arc extends BasicShape {
 
     @Override
     public void update(float cue) {
-        // TODO
+        // TODO do animation here
     }
 
     @Override

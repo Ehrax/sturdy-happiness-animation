@@ -11,8 +11,9 @@ public class Line extends BasicShape {
     public float x2;
     public float y2;
 
-    public float weight;
+    public boolean thinner = false;
 
+    public float weight;
     public float angle = 0;
 
     public Line(PApplet canvas,
@@ -53,7 +54,7 @@ public class Line extends BasicShape {
 
     @Override
     public void update(float cue) {
-
+        // TODO: do animation here
     }
 
     @Override

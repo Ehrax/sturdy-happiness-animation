@@ -1,18 +1,36 @@
 package de.uulm.gdg2;
 
+import de.uulm.gdg2.controllers.GUI;
 import de.uulm.gdg2.controllers.Player;
 import de.uulm.gdg2.shapes.ArcCircle;
 import de.uulm.gdg2.shapes.LineCircle;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
+import de.uulm.gdg2.util.States;
 
 import processing.core.PApplet;
 
+import static de.uulm.gdg2.util.States.AnimationStates.RUNNING;
+import static de.uulm.gdg2.util.States.AnimationStates.READY;
+import static de.uulm.gdg2.util.States.AnimationStates.PAUSED;
+
+import static de.uulm.gdg2.util.States.DevelopmentStates.DEBUG;
+import static de.uulm.gdg2.util.States.DevelopmentStates.DEPLOY;
+
+import static de.uulm.gdg2.util.States.RGBaColors;
+
 public class Funky extends PApplet {
 
-    public static String SONG_PATH = "./resources/song.mp3";
+    public static final String SONG_PATH = "./resources/song.mp3";
+
+    public static float ANI_DELAY = 1000;
+
+    public static States.AnimationStates aniState = READY;
+    public static States.DevelopmentStates devState = DEBUG;
 
     public Player player;
+
+    public GUI gui;
 
     // our colors
     public RGBaColor primaryColor;
@@ -23,29 +41,44 @@ public class Funky extends PApplet {
     public Poop poop;
     public LineCircle innerCircle;
     public LineCircle outerCircle;
-    public LineCircle threeLineCircle;
+
     public ArcCircle arcCircle;
 
     @Override
     public void settings() {
-        size(1240, 720);
-        fullScreen();
+        if (devState == DEBUG) {
+            setSize(1240, 720);
+        } else {
+            fullScreen(1);
+        }
         smooth(8);
     }
 
     @Override
     public void setup() {
-        // setting up colors that we use :)
-        primaryColor = new RGBaColor(0, 0, 0, 255);
-        secondaryColor = new RGBaColor(255, 255, 255, 255);
+        // setting up player to play our song
+        player = new Player(this, SONG_PATH);
+
+        // setting up gui
+        gui = new GUI(this);
+
+        // initialize all our objects
+        initialize();
+    }
+
+    /**
+     * This method is called when the animation is loaded or when the rest button ist preset.
+     */
+    public void initialize() {
+        player.getSong().rewind();
+        player.getSong().pause();
+
+        // setting up colors that we use :) TODO: color change has to be somehow dynamically
+        primaryColor = RGBaColors.BLACK;
+        secondaryColor = RGBaColors.WHITE;
 
         // set up background color of canvas
         backgroundColor = secondaryColor;
-        background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3, backgroundColor.a);
-
-        // setting up player to play our song
-        player = new Player(this, SONG_PATH);
-        player.startPlaying();
 
         // Poop related stuff
         String poopAnimationPath = "./resources/times/poop_anim.json";
@@ -57,7 +90,7 @@ public class Funky extends PApplet {
                 poopAnimationPath,
                 width/2,
                 height/2,
-                40,
+                5000,
                 poopAnimations);
 
         // inner line circle related stuff
@@ -79,7 +112,7 @@ public class Funky extends PApplet {
                 primaryColor,
                 secondaryColor,
                 400,
-                1300,
+                2500,
                 0,
                 TWO_PI,
                 20,
@@ -92,16 +125,12 @@ public class Funky extends PApplet {
                 primaryColor,
                 secondaryColor,
                 3,
-                25,
+                15,
                 180,
                 PI/16
         );
 
-        updateOuterLines();
-    }
-
-    public void updateOuterLines() {
-        outerCircle.lines.get(0).weight = 40;
+        aniState = States.AnimationStates.READY;
     }
 
     @Override
@@ -115,9 +144,6 @@ public class Funky extends PApplet {
                 backgroundColor.a
         );
 
-        /*
-         * TODO: this goes later to GUI
-         */
         poop.draw();
         poop.update(player.getSong().position());
 
@@ -129,6 +155,39 @@ public class Funky extends PApplet {
 
         arcCircle.draw();
         arcCircle.update(player.getSong().position());
+    }
+
+    @Override
+    public void keyPressed() {
+        switch (Character.toLowerCase(key)) {
+            case ' ':
+            case ENTER:
+                // Switch between running and paused state when pressing space
+                playPause();
+                break;
+            case 'h':
+                break;
+            case 'j':
+                break;
+            case 'k':
+                break;
+            case 'l':
+                break;
+            default:
+                break;
+        }
+        super.keyPressed();
+    }
+
+    public void playPause() {
+        aniState = aniState == RUNNING ? PAUSED : RUNNING;
+        if (aniState == RUNNING) {
+            player.getSong().play();
+            gui.hide();
+        } else {
+            player.getSong().pause();
+//            gui.show();
+        }
     }
 
     public static void main(String[] args) {

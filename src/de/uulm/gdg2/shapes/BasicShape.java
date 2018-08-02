@@ -1,6 +1,7 @@
 package de.uulm.gdg2.shapes;
 
 import de.looksgood.ani.Ani;
+import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.controllers.AnimationImport;
 import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
@@ -17,6 +18,7 @@ public abstract class BasicShape {
     public RGBaColor secondaryColor;
 
     public ArrayList<CustomAnimation> anis;
+    public ArrayList<Ani> activeAnimations;
     public String[] aniModes;
 
     public BasicShape(
@@ -31,6 +33,7 @@ public abstract class BasicShape {
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.anis = new ArrayList<>();
+        this.activeAnimations = new ArrayList<>();
         this.aniModes = aniModes;
 
         if (!animationPath.equals("") && aniModes.length != 0) {
@@ -54,10 +57,21 @@ public abstract class BasicShape {
 
     public abstract void draw();
 
-    public abstract void update(float cue);
+    // Empty Body because we don't need to implement it everywhere
+    public void update(float cue) {
+
+    }
 
     public abstract void updateToPrimaryColor();
 
     public abstract void updateToSecondaryColor();
 
+    public void resume() {
+        activeAnimations.removeIf(AniCore::isEnded);
+        activeAnimations.forEach(AniCore::resume);
+    }
+
+    public void pause() {
+        activeAnimations.forEach(AniCore::pause);
+    }
 }

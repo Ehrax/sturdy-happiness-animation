@@ -1,5 +1,6 @@
 package de.uulm.gdg2.shapes;
 
+import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ArcCircle extends BasicShape {
 
         arcs = new ArrayList<>();
 
+        // TODO load correct animation
         String animationPath = "";
         String[] animations = {};
 
@@ -68,17 +70,14 @@ public class ArcCircle extends BasicShape {
     }
 
     @Override
-    public void update(float cue) {
-
-    }
-
-    @Override
     public void updateToPrimaryColor() {
 
+        for (Arc arc: arcs) { arc.updateToPrimaryColor(); }
     }
 
     @Override
     public void updateToSecondaryColor() {
 
+        for (Arc arc: arcs) { arc.updateToSecondaryColor(); }
     }
 }

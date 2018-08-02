@@ -3,6 +3,7 @@ package de.uulm.gdg2.shapes;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import processing.core.PApplet;
 
@@ -49,6 +50,7 @@ public class LineCircle extends BasicShape {
 
         lines = new ArrayList<>();
 
+        // TODO load correct animations
         String lineAnimationPath = "";
         String[] lineAnimations = {};
 
@@ -71,6 +73,22 @@ public class LineCircle extends BasicShape {
     }
 
     @Override
+    public void update(float cue) {
+
+        
+    }
+
+    public void drawThreeLinesThinner() {
+
+        Random rnd = new Random();
+        int rndNumber = rnd.nextInt(lines.size() + 1);
+
+        Line firstLine = lines.get(rndNumber);
+        Line secondLine = rndNumber + 1 > lines.size() ? lines.get(rndNumber % 40) : lines.get(rndNumber + 1);
+        Line thirdLine = rndNumber - 1 < 0 ? lines.get(40) : lines.get(rndNumber - 1);
+    }
+
+    @Override
     public void draw() {
 
         for (Line line : lines) {
@@ -79,24 +97,14 @@ public class LineCircle extends BasicShape {
     }
 
     @Override
-    public void update(float cue) {
-
-    }
-
-    @Override
     public void updateToPrimaryColor() {
 
-        for (Line line : lines) {
-            line.updateToPrimaryColor();
-            ;
-        }
+        for (Line line : lines) { line.updateToPrimaryColor(); }
     }
 
     @Override
     public void updateToSecondaryColor() {
 
-        for (Line line : lines) {
-            line.updateToSecondaryColor();
-        }
+        for (Line line : lines) { line.updateToSecondaryColor(); }
     }
 }
