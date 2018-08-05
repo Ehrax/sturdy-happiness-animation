@@ -11,8 +11,6 @@ public class Line extends BasicShape {
     public float x2;
     public float y2;
 
-    public boolean thinner = false;
-
     public float weight;
     public float angle = 0;
 
@@ -39,7 +37,6 @@ public class Line extends BasicShape {
     public void draw() {
 
         canvas.pushMatrix();
-        canvas.strokeWeight(weight);
         canvas.translate(canvas.width / 2, canvas.height / 2);
         canvas.rotate(angle);
         canvas.stroke(
@@ -48,7 +45,18 @@ public class Line extends BasicShape {
                 this.primaryColor.v3,
                 this.primaryColor.a
         );
-        canvas.line(x1, y1, x2, y2);
+
+        for(float i = 0; i < 1; i+= 1f / 100f) {
+
+            canvas.strokeWeight(PApplet.lerp(weight/3, weight,i));
+//            canvas.stroke(canvas.lerpColor(255, 0, i));
+
+            float xt1 = PApplet.lerp(x1, x2, i);
+            float yt1 = PApplet.lerp(y1, y2, i);
+
+            canvas.line(xt1, yt1, x2, y2);
+        }
+
         canvas.popMatrix();
     }
 

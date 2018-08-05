@@ -47,9 +47,9 @@ public class Funky extends PApplet {
     @Override
     public void settings() {
         if (devState == DEBUG) {
-            setSize(1240, 720);
+            size(1240, 720, P3D);
         } else {
-            fullScreen(1);
+            fullScreen(P3D);
         }
         smooth(8);
     }
@@ -106,16 +106,16 @@ public class Funky extends PApplet {
             45
         );
 
-        // outer line circle related stuff
+//        outer line circle related stuff
         outerCircle = new LineCircle(
                 this,
                 primaryColor,
                 secondaryColor,
-                400,
-                2500,
+                300,
+                800,
                 0,
                 TWO_PI,
-                20,
+                50,
               40
         );
 
@@ -143,6 +143,11 @@ public class Funky extends PApplet {
                 backgroundColor.v3,
                 backgroundColor.a
         );
+
+        if (aniState == READY) {
+
+            return;
+        }
 
         poop.draw();
         poop.update(player.getSong().position());
