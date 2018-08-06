@@ -3,11 +3,14 @@ package de.uulm.gdg2;
 import de.uulm.gdg2.controllers.GUI;
 import de.uulm.gdg2.controllers.Player;
 import de.uulm.gdg2.shapes.ArcCircle;
+import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.InnerCircle;
 import de.uulm.gdg2.shapes.LineCircle;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 import de.uulm.gdg2.util.States;
+
+import java.util.HashMap;
 
 import processing.core.PApplet;
 
@@ -39,6 +42,8 @@ public class Funky extends PApplet {
     public RGBaColor backgroundColor;
 
     // our elements
+    public HashMap<String, BasicShape> shapes = new HashMap<>();
+
     public Poop poop;
     public InnerCircle innerCircle;
     public LineCircle outerCircle;
@@ -92,7 +97,9 @@ public class Funky extends PApplet {
                 width/2,
                 height/2,
                 5000,
-                poopAnimations);
+                poopAnimations
+        );
+        shapes.put("poop", poop);
 
         // outer line circle related stuff
         String outerCircleAnimationPath = "";
@@ -110,6 +117,7 @@ public class Funky extends PApplet {
                 outerCircleAnimationPath,
                 outerCircleAnimations
         );
+        shapes.put("outer_circle", outerCircle);
 
         // inner arc circle
         String arcCircleAnimationPath = "";
@@ -125,6 +133,7 @@ public class Funky extends PApplet {
                 arcCircleAnimationPath,
                 arcCircleAnimations
         );
+        shapes.put("arc_circle", arcCircle);
 
         // inner circle
         String innerLineCircleAnimationPath = "";
@@ -142,6 +151,7 @@ public class Funky extends PApplet {
                 innerLineCircleAnimationPath,
                 innerLineCircleAnimations
         );
+        shapes.put("inner_circle", innerCircle);
 
         aniState = States.AnimationStates.READY;
     }
@@ -162,17 +172,10 @@ public class Funky extends PApplet {
             return;
         }
 
-        poop.draw();
-        poop.update(player.getSong().position());
-
-        innerCircle.draw();
-        innerCircle.update(player.getSong().position());
-
-        outerCircle.draw();
-        outerCircle.update(player.getSong().position());
-
-        arcCircle.draw();
-        arcCircle.update(player.getSong().position());
+        shapes.forEach((k, shape) -> {
+            shape.draw();
+            shape.update(player.getSong().position());
+        });
 
         System.out.println(frameRate);
     }
