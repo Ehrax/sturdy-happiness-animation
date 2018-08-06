@@ -10,15 +10,34 @@ public class MainMenu extends GUI {
 
         super(canvas, primaryColor, secondaryColor);
 
-        String defaultImage = "./resources/button/play_default.png";
-        String rolloverImage = "./resources/button/play_default.png";
-        String pressedImagee = "./resources/button/play_hover.png";
-
-        cp5.addButton("Play" )
-            .setPosition(canvas.width / 2 - 45, canvas.height /2 - 45)
-            .setImages(canvas.loadImage(defaultImage), canvas.loadImage(rolloverImage), canvas.loadImage(pressedImagee))
+        // play button
+        String defaultPlayImgPath = "./resources/button/play_default.png";
+        String hoverPlayImgPath = "./resources/button/play_hover.png";
+        cp5.addButton("play" )
+            .setPosition(canvas.width / 2 - 55, canvas.height /2 - 45)
+            .setImages(canvas.loadImage(defaultPlayImgPath), canvas.loadImage(hoverPlayImgPath), canvas.loadImage(hoverPlayImgPath))
             .updateSize()
             .plugTo(canvas, "playPause"
+        );
+
+        // help button
+        String defaultHelpImgPath = "./resources/button/help_default.png";
+        String hoverHelpImgPath = "./resources/button/help_hover.png";
+        cp5.addButton("help" )
+            .setPosition(35, canvas.height - 85)
+            .setImages(canvas.loadImage(defaultHelpImgPath), canvas.loadImage(hoverHelpImgPath), canvas.loadImage(hoverHelpImgPath))
+            .updateSize()
+            .plugTo(canvas, "showHelpGui"
+        );
+
+        // settings button
+        String defaultSettingsImgPath = "./resources/button/settings_default.png";
+        String hoverSettingsImgPath = "./resources/button/settings_hover.png";
+        cp5.addButton("settings" )
+            .setPosition(canvas.width - 85, canvas.height - 85)
+            .setImages(canvas.loadImage(defaultSettingsImgPath), canvas.loadImage(hoverSettingsImgPath), canvas.loadImage(hoverSettingsImgPath))
+            .updateSize()
+            .plugTo(canvas, "showOptionGui"
         );
     }
 
