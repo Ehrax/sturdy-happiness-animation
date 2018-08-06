@@ -6,9 +6,6 @@ import processing.core.PApplet;
 
 public class Arc extends BasicShape {
 
-    public float centerX;
-    public  float centerY;
-
     public float distanceFromCenter;
     public float weight;
 
@@ -21,18 +18,13 @@ public class Arc extends BasicShape {
             PApplet canvas,
             RGBaColor primaryColor,
             RGBaColor secondaryColor,
-            String animationPath,
-            String[] aniModes,
             float distanceFromCenter,
             float weight,
             float drawStart,
             float drawEnd
     ) {
 
-        super(canvas, primaryColor, secondaryColor, animationPath, aniModes);
-
-        this.centerX = canvas.width / 2;
-        this.centerY = canvas.height / 2;
+        super(canvas, primaryColor, secondaryColor);
 
         this.distanceFromCenter = distanceFromCenter;
         this.weight = weight;
@@ -44,43 +36,32 @@ public class Arc extends BasicShape {
     @Override
     public void draw() {
 
-        canvas.pushMatrix();
-        canvas.noFill();
-        canvas.translate(centerX, centerY);
-        canvas.strokeWeight(weight);
-        canvas.rotate(angle);
-        canvas.stroke(
-                primaryColor.v1,
-                primaryColor.v2,
-                primaryColor.v3,
-                primaryColor.a
-        );
-        canvas.arc(0, 0, distanceFromCenter, distanceFromCenter, drawStart, drawEnd);
-        canvas.popMatrix();
-    }
-
-    @Override
-    public void update(float cue) {
-        // TODO do animation here
+        drawArc(primaryColor);
     }
 
     @Override
     public void updateToPrimaryColor() {
-        canvas.stroke(
-                primaryColor.v1,
-                primaryColor.v2,
-                primaryColor.v3,
-                primaryColor.a
-        );
+
+        drawArc(primaryColor);
     }
 
     @Override
     public void updateToSecondaryColor() {
+
+        drawArc(secondaryColor);
+    }
+
+    public void drawArc(RGBaColor color) {
+
+        canvas.noFill();
+        canvas.strokeWeight(weight);
+        canvas.rotate(angle);
         canvas.stroke(
-                secondaryColor.v1,
-                secondaryColor.v2,
-                secondaryColor.v3,
-                secondaryColor.a
+                color.v1,
+                color.v2,
+                color.v3,
+                color.a
         );
+        canvas.arc(0, 0, distanceFromCenter, distanceFromCenter, drawStart, drawEnd);
     }
 }

@@ -5,6 +5,8 @@ import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
+import sun.awt.image.PixelConverter;
+
 import java.util.Collections;
 
 import processing.core.PApplet;
@@ -39,17 +41,7 @@ public class Poop extends BasicShape {
     @Override
     public void draw() {
 
-        canvas.pushMatrix();
-        canvas.translate(posX, posY);
-        canvas.noStroke();
-        canvas.fill(
-                this.primaryColor.v1,
-                this.primaryColor.v2,
-                this.primaryColor.v3,
-                this.primaryColor.a
-        );
-        canvas.ellipse(0, 0, scale, scale);
-        canvas.popMatrix();
+        drawCircle(primaryColor);
     }
 
     @Override
@@ -78,24 +70,27 @@ public class Poop extends BasicShape {
     @Override
     public void updateToPrimaryColor() {
 
-        canvas.fill(
-                this.primaryColor.v1,
-                this.primaryColor.v2,
-                this.primaryColor.v3,
-                this.primaryColor.a
-        );
-        canvas.ellipse(posX, posY, scale, scale);
+       drawCircle(primaryColor);
     }
 
     @Override
     public void updateToSecondaryColor() {
 
+        drawCircle(secondaryColor);
+    }
+
+    public void drawCircle(RGBaColor color) {
+
+        canvas.pushMatrix();
+        canvas.translate(posX, posY);
+        canvas.noStroke();
         canvas.fill(
-                this.secondaryColor.v1,
-                this.secondaryColor.v2,
-                this.secondaryColor.v3,
-                this.secondaryColor.a
+                color.v1,
+                color.v2,
+                color.v3,
+                color.a
         );
-        canvas.ellipse(posX, posY, scale, scale);
+        canvas.ellipse(0, 0, scale, scale);
+        canvas.popMatrix();
     }
 }

@@ -3,7 +3,6 @@ package de.uulm.gdg2.shapes;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import processing.core.PApplet;
 
@@ -22,8 +21,65 @@ public class LineCircle extends BasicShape {
 
     public int howMany;
 
-    public ArrayList<Line> lines;
+    public ArrayList<OuterLine> lines;
 
+    public LineCircle(
+            PApplet canvas,
+            RGBaColor primaryColor,
+            RGBaColor secondaryColor,
+
+            float innerRadius,
+            float outerRadius,
+            float startToDrawLine,
+            float endToDrawLine,
+            float weight,
+            int howMany,
+            String animationPath,
+            String[] animations
+    ) {
+
+        super(canvas, primaryColor, secondaryColor, animationPath, animations);
+
+        this.innerRadius = innerRadius;
+        this.outerRadius = outerRadius;
+        this.startToDrawLine = startToDrawLine;
+        this.endToDrawLine = endToDrawLine;
+        this.howMany = howMany;
+        this.weight = weight;
+
+        centerX = canvas.width / 2;
+        centerY = canvas.height / 2;
+
+        lines = new ArrayList<>();
+
+        for (float i = startToDrawLine; i < endToDrawLine; i += endToDrawLine / howMany) {
+            OuterLine outerLine = new OuterLine(
+                    canvas,
+                    primaryColor,
+                    secondaryColor,
+                    weight,
+                    PApplet.cos(i) * innerRadius,
+                    PApplet.sin(i) * innerRadius,
+                    PApplet.cos(i) * outerRadius,
+                    PApplet.sin(i) * outerRadius
+            );
+
+            lines.add(outerLine);
+        }
+    }
+
+    /**
+     * second constructor for InnerLineCircle because the draw method there is slightly different
+     * @param canvas
+     * @param primaryColor
+     * @param secondaryColor
+     * @param innerRadius
+     * @param outerRadius
+     * @param startToDrawLine
+     * @param endToDrawLine
+     * @param weight
+     * @param howMany
+     */
     public LineCircle(
             PApplet canvas,
             RGBaColor primaryColor,
@@ -42,61 +98,41 @@ public class LineCircle extends BasicShape {
         this.outerRadius = outerRadius;
         this.startToDrawLine = startToDrawLine;
         this.endToDrawLine = endToDrawLine;
-        this.howMany = howMany;
         this.weight = weight;
-
-        centerX = canvas.width / 2;
-        centerY = canvas.height / 2;
-
-        lines = new ArrayList<>();
-
-        // TODO load correct animations
-        String lineAnimationPath = "";
-        String[] lineAnimations = {};
-
-        for (float i = startToDrawLine; i < endToDrawLine; i += endToDrawLine / howMany) {
-            Line line = new Line(
-                    canvas,
-                    primaryColor,
-                    secondaryColor,
-                    lineAnimationPath,
-                    lineAnimations,
-                    weight,
-                    PApplet.cos(i) * innerRadius,
-                    PApplet.sin(i) * innerRadius,
-                    PApplet.cos(i) * outerRadius,
-                    PApplet.sin(i) * outerRadius
-            );
-
-            lines.add(line);
-        }
+        this.howMany = howMany;
     }
 
     @Override
     public void update(float cue) {
 
-        for (Line line: lines) {
-            line.update(cue);
+        // TODO trigger animations for the lines
+        for (OuterLine outerLine : lines) {
+            outerLine.update(cue);
         }
     }
 
     @Override
     public void draw() {
 
-        for (Line line : lines) {
-            line.draw();
+        canvas.pushMatrix();
+        canvas.translate(centerX, centerY);
+
+        for (OuterLine outerLine : lines) {
+            outerLine.draw();
         }
+
+        canvas.popMatrix();
     }
 
     @Override
     public void updateToPrimaryColor() {
 
-        for (Line line : lines) { line.updateToPrimaryColor(); }
+        for (OuterLine outerLine : lines) { outerLine.updateToPrimaryColor(); }
     }
 
     @Override
     public void updateToSecondaryColor() {
 
-        for (Line line : lines) { line.updateToSecondaryColor(); }
+        for (OuterLine outerLine : lines) { outerLine.updateToSecondaryColor(); }
     }
 }

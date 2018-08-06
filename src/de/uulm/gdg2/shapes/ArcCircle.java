@@ -23,10 +23,12 @@ public class ArcCircle extends BasicShape {
             int howMany,
             float weight,
             float distanceFromCenter,
-            float gap
+            float gap,
+            String animationPath,
+            String[] animations
     ) {
 
-        super(canvas, primaryColor, secondaryColor);
+        super(canvas, primaryColor, secondaryColor, animationPath, animations);
 
         this.howMany = howMany;
         this.weight = weight;
@@ -34,10 +36,6 @@ public class ArcCircle extends BasicShape {
         this.distanceFromCenter = distanceFromCenter;
 
         arcs = new ArrayList<>();
-
-        // TODO load correct animation
-        String animationPath = "";
-        String[] animations = {};
 
         for (float i = 0.0f; i < howMany; i++) {
 
@@ -48,8 +46,6 @@ public class ArcCircle extends BasicShape {
                     canvas,
                     primaryColor,
                     secondaryColor,
-                    animationPath,
-                    animations,
                     distanceFromCenter,
                     weight,
                     drawStart + gap,
@@ -63,6 +59,7 @@ public class ArcCircle extends BasicShape {
     @Override
     public void update(float cue) {
 
+        // Trigger Animations here
         for (Arc arc: arcs) {
             arc.update(cue);
         }
@@ -71,10 +68,15 @@ public class ArcCircle extends BasicShape {
     @Override
     public void draw() {
 
+        canvas.pushMatrix();
+        canvas.translate(canvas.width / 2, canvas.height/2);
+
         for (Arc arc : arcs) {
 
             arc.draw();
         }
+
+        canvas.popMatrix();
     }
 
     @Override

@@ -3,6 +3,7 @@ package de.uulm.gdg2;
 import de.uulm.gdg2.controllers.GUI;
 import de.uulm.gdg2.controllers.Player;
 import de.uulm.gdg2.shapes.ArcCircle;
+import de.uulm.gdg2.shapes.InnerCircle;
 import de.uulm.gdg2.shapes.LineCircle;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
@@ -39,7 +40,7 @@ public class Funky extends PApplet {
 
     // our elements
     public Poop poop;
-    public LineCircle innerCircle;
+    public InnerCircle innerCircle;
     public LineCircle outerCircle;
 
     public ArcCircle arcCircle;
@@ -93,20 +94,9 @@ public class Funky extends PApplet {
                 5000,
                 poopAnimations);
 
-        // inner line circle related stuff
-        innerCircle = new LineCircle(
-                this,
-                primaryColor,
-                secondaryColor,
-                30,
-                35,
-                0,
-                TWO_PI,
-                1,
-            45
-        );
-
-//        outer line circle related stuff
+        // outer line circle related stuff
+        String outerCircleAnimationPath = "";
+        String[] outerCircleAnimations = {};
         outerCircle = new LineCircle(
                 this,
                 primaryColor,
@@ -115,19 +105,42 @@ public class Funky extends PApplet {
                 800,
                 0,
                 TWO_PI,
-                50,
-              40
+                60,
+              40,
+                outerCircleAnimationPath,
+                outerCircleAnimations
         );
 
         // inner arc circle
+        String arcCircleAnimationPath = "";
+        String[] arcCircleAnimations = {};
         arcCircle = new ArcCircle(
                 this,
                 primaryColor,
                 secondaryColor,
                 3,
                 15,
-                180,
-                PI/16
+                130,
+                PI/16,
+                arcCircleAnimationPath,
+                arcCircleAnimations
+        );
+
+        // inner circle
+        String innerLineCircleAnimationPath = "";
+        String[] innerLineCircleAnimations = {};
+        innerCircle = new InnerCircle(
+                this,
+                primaryColor,
+                secondaryColor,
+                30,
+                35,
+                0,
+                TWO_PI,
+                1,
+                45,
+                innerLineCircleAnimationPath,
+                innerLineCircleAnimations
         );
 
         aniState = States.AnimationStates.READY;
@@ -160,6 +173,8 @@ public class Funky extends PApplet {
 
         arcCircle.draw();
         arcCircle.update(player.getSong().position());
+
+        System.out.println(frameRate);
     }
 
     @Override
