@@ -37,9 +37,9 @@ public class Arc extends BasicShape {
     }
 
     @Override
-    public void update(float cue, CustomAnimation ani) {
+    public void animate(CustomAnimation ani) {
 
-        // TODO: trigger here Ani animation
+        // TODO: trigger here the animation
     }
 
     @Override
@@ -61,8 +61,6 @@ public class Arc extends BasicShape {
     }
 
     public void drawArc(RGBaColor color) {
-
-        color.a = 0;
 
         canvas.noFill();
         canvas.strokeWeight(weight);

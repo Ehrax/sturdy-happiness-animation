@@ -57,12 +57,11 @@ public abstract class BasicShape {
 
     public abstract void draw();
 
-    // Empty Body because we don't need to implement it everywhere
-    public void update(float cue) {
+    public void animate(CustomAnimation ani) {
 
     }
 
-    public void update(float cue, CustomAnimation ani) {
+    public void update(float cue) {
 
     }
 

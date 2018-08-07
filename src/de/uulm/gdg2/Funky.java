@@ -121,7 +121,7 @@ public class Funky extends PApplet {
                 this,
                 primaryColor,
                 secondaryColor,
-                125,
+                400,
                 800,
                 0,
                 TWO_PI,
@@ -139,7 +139,7 @@ public class Funky extends PApplet {
                 this,
                 primaryColor,
                 secondaryColor,
-                3,                //
+                3,                 //
                 15,                  // default weight 15
                 200,
                 PI/16,

@@ -70,8 +70,7 @@ public class ArcCircle extends BasicShape {
 
         CustomAnimation ani = anis.remove(0);
 
-        // TODO: Trigger Animations here
-        
+        // TODO trigger here ani event in arc
     }
 
     @Override
