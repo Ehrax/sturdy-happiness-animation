@@ -8,7 +8,7 @@ import de.uulm.gdg2.controllers.Player;
 import de.uulm.gdg2.shapes.ArcCircle;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.InnerCircle;
-import de.uulm.gdg2.shapes.LineCircle;
+import de.uulm.gdg2.shapes.OuterCircle;
 import de.uulm.gdg2.shapes.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 import de.uulm.gdg2.util.States;
@@ -52,7 +52,7 @@ public class Funky extends PApplet {
     public HashMap<String, BasicShape> shapes = new HashMap<>();
     public Poop poop;
     public InnerCircle innerCircle;
-    public LineCircle outerCircle;
+    public OuterCircle outerCircle;
     public ArcCircle arcCircle;
 
     @Override
@@ -117,11 +117,11 @@ public class Funky extends PApplet {
         // outer line circle related stuff
         String outerCircleAnimationPath = "";
         String[] outerCircleAnimations = {};
-        outerCircle = new LineCircle(
+        outerCircle = new OuterCircle(
                 this,
                 primaryColor,
                 secondaryColor,
-                300,
+                125,
                 800,
                 0,
                 TWO_PI,
@@ -139,9 +139,9 @@ public class Funky extends PApplet {
                 this,
                 primaryColor,
                 secondaryColor,
-                3,
-                15,
-                130,
+                3,                //
+                15,                  // default weight 15
+                200,
                 PI/16,
                 arcCircleAnimationPath,
                 arcCircleAnimations
@@ -195,7 +195,10 @@ public class Funky extends PApplet {
     public void keyPressed() {
         switch (Character.toLowerCase(key)) {
             case ' ':
-                playPause();
+                // only enable space bar if the scene is the animation
+                if(aniState!= MAIN && aniState != HELP && aniState != OPTION) {
+                    playPause();
+                }
                 break;
             case 'r':
                 break;
@@ -212,7 +215,6 @@ public class Funky extends PApplet {
     }
 
     public void playPause() {
-        // TODO: thing here of better way :)
         aniState = aniState == RUNNING ? PAUSED : RUNNING;
         if (aniState == RUNNING) {
             player.getSong().play();

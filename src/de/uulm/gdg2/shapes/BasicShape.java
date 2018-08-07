@@ -62,6 +62,10 @@ public abstract class BasicShape {
 
     }
 
+    public void update(float cue, CustomAnimation ani) {
+
+    }
+
     public abstract void updateToPrimaryColor();
 
     public abstract void updateToSecondaryColor();

@@ -10,13 +10,14 @@ public class HelpMenu extends GUI {
 
         super(canvas, primaryColor, secondaryColor);
 
+        // play button
+        String defaultPlayImgPath = "./resources/button/close_default.png";
+        String hoverPlayImgPath = "./resources/button/close_hover.png";
         cp5.addButton("close" )
-            .setPosition(20, 500)
-            .setSize(150, 136)
-            .setFont(font)
+            .setPosition(canvas.width - 90, 40)
+            .setImages(canvas.loadImage(defaultPlayImgPath), canvas.loadImage(hoverPlayImgPath), canvas.loadImage(hoverPlayImgPath))
+            .updateSize()
             .plugTo(canvas, "showMainMenu"
         );
-
-
     }
 }

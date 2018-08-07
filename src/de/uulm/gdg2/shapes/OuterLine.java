@@ -65,9 +65,10 @@ public class OuterLine extends BasicShape {
 
         float dist = PApplet.dist(x1, y1, 0, 0);
 
-        for(float i = 0; i < 1; i+= 1f / 100f) {
+        for(float i = 0; i < 1; i+= 1f / 75f) {
 
-            canvas.strokeWeight(PApplet.lerp((dist * 2)/weight, weight,i));
+            canvas.strokeWeight(PApplet.lerp((dist * 3) /weight, weight,i));
+//            canvas.strokeWeight(PApplet.lerp(25, weight,i));
 //            canvas.stroke(canvas.lerpColor(255, 0, i));
 
             float xt1 = PApplet.lerp(x1, x2, i);

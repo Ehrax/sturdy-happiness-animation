@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class LineCircle extends BasicShape {
+public class OuterCircle extends BasicShape {
 
     public float innerRadius;
     public float outerRadius;
@@ -23,7 +23,7 @@ public class LineCircle extends BasicShape {
 
     public ArrayList<OuterLine> lines;
 
-    public LineCircle(
+    public OuterCircle(
             PApplet canvas,
             RGBaColor primaryColor,
             RGBaColor secondaryColor,
@@ -80,7 +80,7 @@ public class LineCircle extends BasicShape {
      * @param weight
      * @param howMany
      */
-    public LineCircle(
+    public OuterCircle(
             PApplet canvas,
             RGBaColor primaryColor,
             RGBaColor secondaryColor,

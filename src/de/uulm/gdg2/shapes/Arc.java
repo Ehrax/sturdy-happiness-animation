@@ -1,5 +1,6 @@
 package de.uulm.gdg2.shapes;
 
+import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
@@ -13,6 +14,8 @@ public class Arc extends BasicShape {
 
     public float drawStart;
     public float drawEnd;
+
+    public CustomAnimation ani;
 
     public Arc(
             PApplet canvas,
@@ -34,6 +37,12 @@ public class Arc extends BasicShape {
     }
 
     @Override
+    public void update(float cue, CustomAnimation ani) {
+
+        // TODO: trigger here Ani animation
+    }
+
+    @Override
     public void draw() {
 
         drawArc(primaryColor);
@@ -52,6 +61,8 @@ public class Arc extends BasicShape {
     }
 
     public void drawArc(RGBaColor color) {
+
+        color.a = 0;
 
         canvas.noFill();
         canvas.strokeWeight(weight);

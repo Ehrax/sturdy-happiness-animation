@@ -1,6 +1,7 @@
 package de.uulm.gdg2.shapes;
 
 import de.looksgood.ani.AniCore;
+import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
@@ -59,10 +60,18 @@ public class ArcCircle extends BasicShape {
     @Override
     public void update(float cue) {
 
-        // Trigger Animations here
-        for (Arc arc: arcs) {
-            arc.update(cue);
+        if (anis.size() == 0){
+            return;
         }
+
+        if(cue < anis.get(0).start) {
+            return;
+        }
+
+        CustomAnimation ani = anis.remove(0);
+
+        // TODO: Trigger Animations here
+        
     }
 
     @Override

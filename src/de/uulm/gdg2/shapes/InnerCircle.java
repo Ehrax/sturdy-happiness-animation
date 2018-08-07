@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class InnerCircle extends LineCircle {
+public class InnerCircle extends OuterCircle {
 
     public ArrayList<InnerLine> lines;
 
