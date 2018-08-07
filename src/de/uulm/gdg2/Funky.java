@@ -46,6 +46,7 @@ public class Funky extends PApplet {
     public HashMap<String, GUI> guis = new HashMap<>();
     public RGBaColor primaryColor;
     public RGBaColor secondaryColor;
+
     public RGBaColor backgroundColor;
 
     // our elements
@@ -102,10 +103,12 @@ public class Funky extends PApplet {
         // Poop related stuff
         String poopAnimationPath = "./resources/times/poop_anim.json";
         String[] poopAnimations = {"scale"};
+        RGBaColor poopPrimaryColor = primaryColor.copy();
+        RGBaColor poopSecondaryColor = secondaryColor.copy();
         poop = new Poop(
                 this,
-                primaryColor,
-                secondaryColor,
+                poopPrimaryColor,
+                poopSecondaryColor,
                 poopAnimationPath,
                 width/2,
                 height/2,
@@ -117,10 +120,12 @@ public class Funky extends PApplet {
         // outer line circle related stuff
         String outerCircleAnimationPath = "";
         String[] outerCircleAnimations = {};
+        RGBaColor outerCirclePrimaryColor = primaryColor.copy();
+        RGBaColor outerCircleSecondaryColor = secondaryColor.copy();
         outerCircle = new OuterCircle(
                 this,
-                primaryColor,
-                secondaryColor,
+                outerCirclePrimaryColor,
+                outerCircleSecondaryColor,
                 400,
                 800,
                 0,
@@ -135,10 +140,12 @@ public class Funky extends PApplet {
         // inner arc circle
         String arcCircleAnimationPath = "";
         String[] arcCircleAnimations = {};
+        RGBaColor arcCirclePrimaryColor = primaryColor.copy();
+        RGBaColor arcCircleSecondaryColor = secondaryColor.copy();
         arcCircle = new ArcCircle(
                 this,
-                primaryColor,
-                secondaryColor,
+                arcCirclePrimaryColor,
+                arcCircleSecondaryColor,
                 3,                 //
                 15,                  // default weight 15
                 200,
@@ -151,10 +158,12 @@ public class Funky extends PApplet {
         // inner circle
         String innerLineCircleAnimationPath = "";
         String[] innerLineCircleAnimations = {};
+        RGBaColor innerCirclePrimaryColor = primaryColor.copy();
+        RGBaColor innerCircleSecondaryColor = secondaryColor.copy();
         innerCircle = new InnerCircle(
                 this,
-                primaryColor,
-                secondaryColor,
+                innerCirclePrimaryColor,
+                innerCircleSecondaryColor,
                 30,
                 35,
                 0,

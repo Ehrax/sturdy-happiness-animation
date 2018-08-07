@@ -13,4 +13,8 @@ public class RGBaColor {
         this.v3 = v3;
         this.a = a;
     }
+
+    public RGBaColor copy() {
+        return new RGBaColor(v1,v2, v3, a);
+    }
 }
