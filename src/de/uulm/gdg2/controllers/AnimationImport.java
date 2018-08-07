@@ -2,7 +2,8 @@ package de.uulm.gdg2.controllers;
 
 import de.looksgood.ani.AniConstants;
 import de.looksgood.ani.easing.Easing;
-import de.uulm.gdg2.util.CustomAnimation;
+import de.uulm.gdg2.animations.ClickAnimation;
+import de.uulm.gdg2.animations.CustomAnimation;
 
 import java.util.ArrayList;
 
@@ -14,15 +15,13 @@ public abstract class AnimationImport {
 
     public static ArrayList<CustomAnimation> importAnimation(PApplet canvas, String filePath, String type) {
 
+        ArrayList<CustomAnimation> anisAnimations = new ArrayList<>();
         JSONObject json = canvas.loadJSONObject(filePath);
         JSONArray array = json.getJSONArray(type);
 
-        CustomAnimation custAnim;
-
-        ArrayList<CustomAnimation> anisAnimations = new ArrayList<CustomAnimation>();
-
         for (int i = 0; i < array.size(); i++) {
             JSONObject o = array.getJSONObject(i);
+            CustomAnimation custAnim;
 
             float start = o.getFloat("start");
             float end = o.getFloat("end");
@@ -42,6 +41,23 @@ public abstract class AnimationImport {
         }
 
         return anisAnimations;
+    }
+
+    public static ArrayList<ClickAnimation> importClickAnimation(PApplet canvas, String filePath, String mode) {
+
+        ArrayList<ClickAnimation>  animations = new ArrayList<>();
+        JSONObject json =  canvas.loadJSONObject(filePath);
+        JSONArray jsonArray = json.getJSONArray(mode);
+
+        for(int i = 0; i < jsonArray.size(); i++) {
+            JSONObject o = jsonArray.getJSONObject(i);
+            ClickAnimation clickAnimation = new ClickAnimation();
+
+            clickAnimation.start = o.getFloat("start");
+            clickAnimation.end = o.getFloat("end");
+            animations.add(clickAnimation);
+        }
+        return animations;
     }
 
     private static Easing determineEasing(String ease) {

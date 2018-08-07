@@ -1,7 +1,8 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.circle;
 
-import de.looksgood.ani.AniCore;
-import de.uulm.gdg2.util.CustomAnimation;
+import de.uulm.gdg2.animations.CustomAnimation;
+import de.uulm.gdg2.shapes.BasicShape;
+import de.uulm.gdg2.shapes.basic.Arc;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
@@ -77,26 +78,12 @@ public class ArcCircle extends BasicShape {
     @Override
     public void draw() {
 
-        canvas.pushMatrix();
-        canvas.translate(canvas.width / 2, canvas.height/2);
-
-        for (Arc arc : arcs) {
-
-            arc.draw();
-        }
-
-        canvas.popMatrix();
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
-
-        for (Arc arc: arcs) { arc.updateToPrimaryColor(); }
+        arcs.forEach(BasicShape::draw);
     }
 
     @Override
     public void updateToSecondaryColor() {
 
-        for (Arc arc: arcs) { arc.updateToSecondaryColor(); }
+        arcs.forEach(BasicShape::updateToSecondaryColor);
     }
 }

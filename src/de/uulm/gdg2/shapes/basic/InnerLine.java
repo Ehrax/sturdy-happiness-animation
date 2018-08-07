@@ -1,6 +1,5 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.basic;
 
-import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
@@ -27,18 +26,6 @@ public class InnerLine extends OuterLine {
     }
 
     @Override
-    public void animate(CustomAnimation ani) {
-
-        // TODO: animate here :)
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
-
-        drawInnerLineCircle(primaryColor);
-    }
-
-    @Override
     public void updateToSecondaryColor() {
 
         drawInnerLineCircle(secondaryColor);
@@ -46,9 +33,12 @@ public class InnerLine extends OuterLine {
 
     public void drawInnerLineCircle(RGBaColor color) {
 
+        canvas.pushMatrix();
+        canvas.translate(canvas.width/2, canvas.height/2);
         canvas.rotate(angle);
         canvas.stroke(color.v1, color.v2, color.v3, alpha);
         canvas.strokeWeight(weight);
         canvas.line(x1, y1, x2, y2);
+        canvas.popMatrix();
     }
 }

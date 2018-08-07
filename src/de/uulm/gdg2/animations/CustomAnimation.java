@@ -1,4 +1,4 @@
-package de.uulm.gdg2.util;
+package de.uulm.gdg2.animations;
 
 import de.looksgood.ani.easing.Easing;
 

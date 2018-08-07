@@ -1,11 +1,10 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.basic;
 
 import de.looksgood.ani.Ani;
 import de.looksgood.ani.AniCore;
-import de.uulm.gdg2.util.CustomAnimation;
+import de.uulm.gdg2.animations.CustomAnimation;
+import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.util.RGBaColor;
-
-import sun.awt.image.PixelConverter;
 
 import java.util.Collections;
 
@@ -65,12 +64,6 @@ public class Poop extends BasicShape {
         }
 
         activeAnimations.removeIf(AniCore::isEnded);
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
-
-       drawCircle(primaryColor);
     }
 
     @Override

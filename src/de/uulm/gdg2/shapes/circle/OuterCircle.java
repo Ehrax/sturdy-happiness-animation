@@ -1,5 +1,7 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.circle;
 
+import de.uulm.gdg2.shapes.BasicShape;
+import de.uulm.gdg2.shapes.basic.OuterLine;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
@@ -115,25 +117,12 @@ public class OuterCircle extends BasicShape {
     @Override
     public void draw() {
 
-        canvas.pushMatrix();
-        canvas.translate(centerX, centerY);
-
-        for (OuterLine outerLine : lines) {
-            outerLine.draw();
-        }
-
-        canvas.popMatrix();
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
-
-        for (OuterLine outerLine : lines) { outerLine.updateToPrimaryColor(); }
+        lines.forEach(BasicShape::draw);
     }
 
     @Override
     public void updateToSecondaryColor() {
 
-        for (OuterLine outerLine : lines) { outerLine.updateToSecondaryColor(); }
+        lines.forEach(BasicShape::updateToSecondaryColor);
     }
 }

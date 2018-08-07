@@ -1,5 +1,7 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.circle;
 
+import de.uulm.gdg2.shapes.BasicShape;
+import de.uulm.gdg2.shapes.basic.InnerLine;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
@@ -76,22 +78,12 @@ public class InnerCircle extends OuterCircle {
     @Override
     public void draw() {
 
-        canvas.pushMatrix();
-        canvas.translate(centerX, centerY);
-
-        for(InnerLine line : lines) { line.draw(); }
-        canvas.popMatrix();
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
-
-        for(InnerLine line : lines) { line.updateToPrimaryColor(); }
+        lines.forEach(BasicShape::draw);
     }
 
     @Override
     public void updateToSecondaryColor() {
 
-        for(InnerLine line : lines) { line.updateToSecondaryColor(); }
+        lines.forEach(BasicShape::updateToSecondaryColor);
     }
 }

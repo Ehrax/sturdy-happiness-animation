@@ -1,6 +1,7 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.basic;
 
-import de.uulm.gdg2.util.CustomAnimation;
+import de.uulm.gdg2.animations.CustomAnimation;
+import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
@@ -38,19 +39,7 @@ public class Arc extends BasicShape {
     }
 
     @Override
-    public void animate(CustomAnimation ani) {
-
-        // TODO: trigger here the animation
-    }
-
-    @Override
     public void draw() {
-
-        drawArc(primaryColor);
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
 
         drawArc(primaryColor);
     }
@@ -63,6 +52,8 @@ public class Arc extends BasicShape {
 
     public void drawArc(RGBaColor color) {
 
+        canvas.pushMatrix();
+        canvas.translate(canvas.width/2, canvas.height/2);
         canvas.noFill();
         canvas.strokeWeight(weight);
         canvas.rotate(angle);
@@ -73,5 +64,6 @@ public class Arc extends BasicShape {
                 alpha
         );
         canvas.arc(0, 0, distanceFromCenter, distanceFromCenter, drawStart, drawEnd);
+        canvas.popMatrix();
     }
 }

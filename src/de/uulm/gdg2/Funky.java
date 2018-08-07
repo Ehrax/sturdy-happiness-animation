@@ -4,17 +4,22 @@ import de.uulm.gdg2.GUI.GUI;
 import de.uulm.gdg2.GUI.HelpMenu;
 import de.uulm.gdg2.GUI.MainMenu;
 import de.uulm.gdg2.GUI.OptionMenu;
+import de.uulm.gdg2.animations.ClickAnimation;
+import de.uulm.gdg2.controllers.AnimationImport;
+import de.uulm.gdg2.controllers.GlobalAnimationController;
 import de.uulm.gdg2.controllers.Player;
-import de.uulm.gdg2.shapes.ArcCircle;
+import de.uulm.gdg2.shapes.circle.ArcCircle;
 import de.uulm.gdg2.shapes.BasicShape;
-import de.uulm.gdg2.shapes.InnerCircle;
-import de.uulm.gdg2.shapes.OuterCircle;
-import de.uulm.gdg2.shapes.Poop;
+import de.uulm.gdg2.shapes.circle.InnerCircle;
+import de.uulm.gdg2.shapes.circle.OuterCircle;
+import de.uulm.gdg2.shapes.basic.Poop;
 import de.uulm.gdg2.util.RGBaColor;
 import de.uulm.gdg2.util.States;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import jogamp.nativewindow.GlobalToolkitLock;
 import processing.core.PApplet;
 
 import static de.uulm.gdg2.util.States.AnimationStates.RUNNING;
@@ -55,6 +60,11 @@ public class Funky extends PApplet {
     public InnerCircle innerCircle;
     public OuterCircle outerCircle;
     public ArcCircle arcCircle;
+
+    // our click Animation
+    public ArrayList<ClickAnimation> clickAnimations;
+
+    public GlobalAnimationController globalAnimationController;
 
     @Override
     public void settings() {
@@ -100,7 +110,11 @@ public class Funky extends PApplet {
         secondaryColor = RGBaColors.WHITE;
 
         // set up background color of canvas
-        backgroundColor = secondaryColor;
+        backgroundColor = secondaryColor.copy();
+
+        // init our click animations
+        String clickAnimationPath = "./resources/times/click_anim.json";
+        clickAnimations = AnimationImport.importClickAnimation(this, clickAnimationPath, "click");
 
         // Poop related stuff
         String poopAnimationPath = "./resources/times/poop_anim.json";
@@ -129,8 +143,8 @@ public class Funky extends PApplet {
                 this,
                 outerCirclePrimaryColor,
                 outerCircleSecondaryColor,
-                400,
-                800,
+                1000,
+                1000,
                 0,
                 TWO_PI,
                 60,
@@ -177,6 +191,15 @@ public class Funky extends PApplet {
                 innerLineCircleAnimations
         );
         shapes.put("inner_circle", innerCircle);
+
+        // global animation stuff
+        globalAnimationController = new GlobalAnimationController(
+                this,
+                clickAnimations,
+                shapes,
+                primaryColor,
+                secondaryColor
+        );
     }
 
     @Override
@@ -184,8 +207,8 @@ public class Funky extends PApplet {
 
         switch (aniState) {
             case MAIN:
-                mainMenu.draw();
                 mainMenu.drawMenuLines();
+                mainMenu.draw();
                 return;
             case OPTION:
                 optionMenu.draw();
@@ -194,13 +217,11 @@ public class Funky extends PApplet {
                 helpMenu.draw();
                 return;
             case RUNNING:
-                drawAnimation();
+                globalAnimationController.drawAnimations(player.getSong().position());
                 break;
             default:
                 break;
         }
-
-        System.out.println(frameRate);
     }
 
     @Override
@@ -233,17 +254,6 @@ public class Funky extends PApplet {
         } else {
             player.getSong().pause();
         }
-    }
-
-    public void drawAnimation() {
-
-        // is needed because each frame we redraw our background :)
-        background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3);
-
-        shapes.forEach((k, shape) -> {
-            shape.draw();
-            shape.update(player.getSong().position());
-        });
     }
 
     public void showHelpGui() { aniState = HELP; }

@@ -3,7 +3,7 @@ package de.uulm.gdg2.shapes;
 import de.looksgood.ani.Ani;
 import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.controllers.AnimationImport;
-import de.uulm.gdg2.util.CustomAnimation;
+import de.uulm.gdg2.animations.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
@@ -101,17 +101,12 @@ public abstract class BasicShape {
 
     public abstract void draw();
 
-    public void animate(CustomAnimation ani) {
-
-    }
+    public abstract void updateToSecondaryColor();
 
     public void update(float cue) {
 
     }
 
-    public abstract void updateToPrimaryColor();
-
-    public abstract void updateToSecondaryColor();
 
     public void resume() {
         activeAnimations.removeIf(AniCore::isEnded);

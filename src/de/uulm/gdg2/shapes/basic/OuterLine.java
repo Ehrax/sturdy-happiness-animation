@@ -1,6 +1,6 @@
-package de.uulm.gdg2.shapes;
+package de.uulm.gdg2.shapes.basic;
 
-import de.uulm.gdg2.util.CustomAnimation;
+import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
@@ -41,29 +41,19 @@ public class OuterLine extends BasicShape {
     }
 
     @Override
-    public void animate(CustomAnimation ani) {
-
-        // TODO: trigger here outer line animation
-    }
-
-    @Override
-    public void updateToPrimaryColor() {
-        drawCircle(primaryColor);
-    }
-
-    @Override
     public void updateToSecondaryColor() {
 
         drawCircle(secondaryColor);
     }
 
+
     public void drawCircle(RGBaColor color) {
 
+        canvas.pushMatrix();
+        canvas.translate(canvas.width/2, canvas.height/2);
         canvas.stroke( color.v1, color.v2, color.v3, alpha);
         canvas.rotate(angle);
-
         float dist = PApplet.dist(x1, y1, 0, 0);
-
         for(float i = 0; i < 1; i+= 1f / 75f) {
 
             canvas.strokeWeight(PApplet.lerp((dist * 3) /weight, weight,i));
@@ -75,5 +65,6 @@ public class OuterLine extends BasicShape {
 
             canvas.line(xt1, yt1, x2, y2);
         }
+        canvas.popMatrix();
     }
 }
