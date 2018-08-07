@@ -1,5 +1,6 @@
 package de.uulm.gdg2.shapes;
 
+import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
@@ -22,6 +23,12 @@ public class InnerLine extends OuterLine {
     public void draw() {
 
         drawInnerLineCircle(primaryColor);
+    }
+
+    @Override
+    public void animate(CustomAnimation ani) {
+
+        // TODO: animate here :)
     }
 
     @Override

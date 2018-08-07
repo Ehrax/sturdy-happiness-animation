@@ -1,5 +1,6 @@
 package de.uulm.gdg2.shapes;
 
+import de.uulm.gdg2.util.CustomAnimation;
 import de.uulm.gdg2.util.RGBaColor;
 
 import processing.core.PApplet;
@@ -38,8 +39,9 @@ public class OuterLine extends BasicShape {
     }
 
     @Override
-    public void update(float cue) {
-        // TODO: do animation here
+    public void animate(CustomAnimation ani) {
+
+        // TODO: trigger here outer line animation
     }
 
     @Override
