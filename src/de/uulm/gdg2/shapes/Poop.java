@@ -22,6 +22,7 @@ public class Poop extends BasicShape {
             PApplet canvas,
             RGBaColor primaryColor,
             RGBaColor secondaryColor,
+            int alpha,
             String animationPath,
             float posX,
             float posY,
@@ -29,8 +30,7 @@ public class Poop extends BasicShape {
             String[] aniModes
     ) {
 
-        super(canvas, primaryColor, secondaryColor, animationPath, aniModes);
-
+        super(canvas, primaryColor, secondaryColor, alpha, animationPath, aniModes);
 
         this.posX = posX;
         this.posY = posY;
@@ -84,12 +84,7 @@ public class Poop extends BasicShape {
         canvas.pushMatrix();
         canvas.translate(posX, posY);
         canvas.noStroke();
-        canvas.fill(
-                color.v1,
-                color.v2,
-                color.v3,
-                color.a
-        );
+        canvas.fill( color.v1, color.v2, color.v3, alpha);
         canvas.ellipse(0, 0, scale, scale);
         canvas.popMatrix();
     }

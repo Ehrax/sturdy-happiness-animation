@@ -21,6 +21,21 @@ public abstract class BasicShape {
     public ArrayList<Ani> activeAnimations;
     public String[] aniModes;
 
+    public int alpha;
+
+    public BasicShape(
+            PApplet canvas,
+            RGBaColor primaryColor,
+            RGBaColor secondaryColor,
+            int alpha
+    ) {
+
+        this.canvas = canvas;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
+        this.alpha = alpha;
+    }
+
     public BasicShape(
             PApplet canvas,
             RGBaColor primaryColor,
@@ -32,6 +47,35 @@ public abstract class BasicShape {
         this.canvas = canvas;
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
+        this.anis = new ArrayList<>();
+        this.activeAnimations = new ArrayList<>();
+        this.aniModes = aniModes;
+
+        if (!animationPath.equals("") && aniModes.length != 0) {
+
+            Ani.init(canvas);
+
+            for (String mode : aniModes) {
+                anis.addAll(AnimationImport.importAnimation(this.canvas, animationPath, mode));
+            }
+
+            Collections.sort(this.anis);
+        }
+    }
+
+    public BasicShape(
+            PApplet canvas,
+            RGBaColor primaryColor,
+            RGBaColor secondaryColor,
+            int alpha,
+            String animationPath,
+            String[] aniModes
+    ) {
+
+        this.canvas = canvas;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
+        this.alpha = alpha;
         this.anis = new ArrayList<>();
         this.activeAnimations = new ArrayList<>();
         this.aniModes = aniModes;

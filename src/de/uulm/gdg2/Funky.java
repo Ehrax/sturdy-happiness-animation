@@ -77,11 +77,13 @@ public class Funky extends PApplet {
         initialize();
 
         // setting up our menus
-        mainMenu = new MainMenu(this, primaryColor, secondaryColor);
+        RGBaColor guiPrimaryColor = primaryColor.copy();
+        RGBaColor guiSecondaryColor = secondaryColor.copy();
+        mainMenu = new MainMenu(this, guiPrimaryColor, guiSecondaryColor);
         guis.put("main", mainMenu);
-        optionMenu = new OptionMenu(this, primaryColor, secondaryColor);
+        optionMenu = new OptionMenu(this, guiPrimaryColor, guiSecondaryColor);
         guis.put("option", optionMenu);
-        helpMenu = new HelpMenu(this, primaryColor, secondaryColor);
+        helpMenu = new HelpMenu(this, guiPrimaryColor, guiSecondaryColor);
         guis.put("help", helpMenu);
     }
 
@@ -109,6 +111,7 @@ public class Funky extends PApplet {
                 this,
                 poopPrimaryColor,
                 poopSecondaryColor,
+                255,
                 poopAnimationPath,
                 width/2,
                 height/2,
@@ -235,12 +238,7 @@ public class Funky extends PApplet {
     public void drawAnimation() {
 
         // is needed because each frame we redraw our background :)
-        background(
-                backgroundColor.v1,
-                backgroundColor.v2,
-                backgroundColor.v3,
-                backgroundColor.a
-        );
+        background(backgroundColor.v1, backgroundColor.v2, backgroundColor.v3);
 
         shapes.forEach((k, shape) -> {
             shape.draw();

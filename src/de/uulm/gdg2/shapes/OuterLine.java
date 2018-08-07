@@ -18,10 +18,12 @@ public class OuterLine extends BasicShape {
     public OuterLine(PApplet canvas,
                      RGBaColor primaryColor,
                      RGBaColor secondaryColor,
+                     int alpha,
                      float weight,
-                     float x1, float y1, float x2, float y2) {
+                     float x1, float y1, float x2, float y2
+    ) {
 
-        super(canvas, primaryColor, secondaryColor);
+        super(canvas, primaryColor, secondaryColor, alpha);
 
         this.weight = weight;
         this.x1 = x1;
@@ -57,12 +59,7 @@ public class OuterLine extends BasicShape {
 
     public void drawCircle(RGBaColor color) {
 
-        canvas.stroke(
-                color.v1,
-                color.v2,
-                color.v3,
-                color.a
-        );
+        canvas.stroke( color.v1, color.v2, color.v3, alpha);
         canvas.rotate(angle);
 
         float dist = PApplet.dist(x1, y1, 0, 0);

@@ -6,7 +6,7 @@ public class RGBaColor {
     public int v3;
     public int a;
 
-    public RGBaColor(int v1, int v2, int v3, int a) {
+    public RGBaColor(int v1, int v2, int v3) {
 
         this.v1 = v1;
         this.v2 = v2;
@@ -15,6 +15,6 @@ public class RGBaColor {
     }
 
     public RGBaColor copy() {
-        return new RGBaColor(v1,v2, v3, a);
+        return new RGBaColor(v1,v2, v3);
     }
 }

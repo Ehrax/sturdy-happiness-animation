@@ -46,8 +46,7 @@ public class MainMenu extends GUI {
         canvas.stroke(
                 secondaryColor.v1,
                 secondaryColor.v2,
-                secondaryColor.v3,
-                secondaryColor.a
+                secondaryColor.v3
         );
 
         canvas.strokeCap(1);

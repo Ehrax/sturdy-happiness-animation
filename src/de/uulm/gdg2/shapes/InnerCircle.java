@@ -55,6 +55,7 @@ public class InnerCircle extends OuterCircle {
                     canvas,
                     primaryColor,
                     secondaryColor,
+                    255,
                     weight,
                     PApplet.cos(i) * innerRadius,
                     PApplet.sin(i) * innerRadius,

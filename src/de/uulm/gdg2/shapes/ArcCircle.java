@@ -47,6 +47,7 @@ public class ArcCircle extends BasicShape {
                     canvas,
                     primaryColor,
                     secondaryColor,
+                    255,
                     distanceFromCenter,
                     weight,
                     drawStart + gap,

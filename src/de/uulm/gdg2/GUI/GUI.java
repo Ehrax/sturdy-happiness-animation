@@ -55,8 +55,7 @@ public abstract class GUI {
         canvas.fill(
                 primaryColor.v1,
                 primaryColor.v2,
-                primaryColor.v3,
-                primaryColor.a
+                primaryColor.v3
         );
 
         canvas.noStroke();
@@ -65,8 +64,7 @@ public abstract class GUI {
         canvas.stroke(
                 secondaryColor.v1,
                 secondaryColor.v2,
-                secondaryColor.v3,
-                secondaryColor.a
+                secondaryColor.v3
         );
 
         canvas.strokeCap(1);

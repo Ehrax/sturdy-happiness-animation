@@ -11,10 +11,11 @@ public class InnerLine extends OuterLine {
             PApplet canvas,
             RGBaColor primaryColor,
             RGBaColor secondaryColor,
+            int alpha,
             float weight,
             float x1, float y1, float x2, float y2) {
 
-        super(canvas, primaryColor, secondaryColor, weight, x1, y1, x2, y2);
+        super(canvas, primaryColor, secondaryColor, alpha, weight, x1, y1, x2, y2);
 
         canvas.strokeCap(1);
     }
@@ -46,7 +47,7 @@ public class InnerLine extends OuterLine {
     public void drawInnerLineCircle(RGBaColor color) {
 
         canvas.rotate(angle);
-        canvas.stroke(color.v1, color.v2, color.v3, color.a);
+        canvas.stroke(color.v1, color.v2, color.v3, alpha);
         canvas.strokeWeight(weight);
         canvas.line(x1, y1, x2, y2);
     }

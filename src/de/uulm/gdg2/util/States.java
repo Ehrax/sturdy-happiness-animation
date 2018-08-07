@@ -11,8 +11,8 @@ public class States {
 
     // TODO: pick up some more colors for a color change
     public interface RGBaColors {
-        RGBaColor BLACK = new RGBaColor(0, 0 ,0 ,255);
-        RGBaColor WHITE = new RGBaColor(255, 255, 255, 255);
+        RGBaColor BLACK = new RGBaColor(0, 0 ,0);
+        RGBaColor WHITE = new RGBaColor(255, 255, 255);
     }
 
     public interface CColors {

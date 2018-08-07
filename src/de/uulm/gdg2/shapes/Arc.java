@@ -21,13 +21,14 @@ public class Arc extends BasicShape {
             PApplet canvas,
             RGBaColor primaryColor,
             RGBaColor secondaryColor,
+            int alpha,
             float distanceFromCenter,
             float weight,
             float drawStart,
             float drawEnd
     ) {
 
-        super(canvas, primaryColor, secondaryColor);
+        super(canvas, primaryColor, secondaryColor, alpha);
 
         this.distanceFromCenter = distanceFromCenter;
         this.weight = weight;
@@ -69,7 +70,7 @@ public class Arc extends BasicShape {
                 color.v1,
                 color.v2,
                 color.v3,
-                color.a
+                alpha
         );
         canvas.arc(0, 0, distanceFromCenter, distanceFromCenter, drawStart, drawEnd);
     }
