@@ -12,5 +12,6 @@
     <orderEntry type="library" name="jl1.0.1" level="project" />
     <orderEntry type="library" name="controlP5" level="project" />
     <orderEntry type="library" name="OpenGl" level="project" />
+    <orderEntry type="library" name="opengl" level="project" />
   </component>
 </module>

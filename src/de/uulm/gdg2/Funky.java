@@ -151,18 +151,18 @@ public class Funky extends PApplet {
         shapes.put("outer_circle", outerCircle);
 
         // inner arc circle
-        String arcCircleAnimationPath = "";
-        String[] arcCircleAnimations = {};
+        String arcCircleAnimationPath = "./resources/json/animation/arcCircleAnim.json";
+        String[] arcCircleAnimations = {"alpha", "angle"};
         RGBaColor arcCirclePrimaryColor = primaryColor.copy();
         RGBaColor arcCircleSecondaryColor = secondaryColor.copy();
         arcCircle = new ArcCircle(
                 this,
                 arcCirclePrimaryColor,
                 arcCircleSecondaryColor,
-                3,                 //
-                15,                  // default weight 15
-                200,
-                PI/16,
+                9,                 //
+                5,                  // default weight 15
+                160,
+                PI/32,
                 arcCircleAnimationPath,
                 arcCircleAnimations
         );
@@ -241,6 +241,8 @@ public class Funky extends PApplet {
                 // TODO reset Song and reset Animation array
                 aniState = MAIN;
                 break;
+            case 'f':
+                player.getSong().skip(5000);
             default:
                 break;
         }

@@ -1,5 +1,7 @@
 package de.uulm.gdg2.shapes.circle;
 
+import de.looksgood.ani.Ani;
+import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.animations.CustomAnimation;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.basic.Arc;
@@ -73,6 +75,12 @@ public class ArcCircle extends BasicShape {
         CustomAnimation ani = anis.remove(0);
 
         // TODO trigger here ani event in arc
+
+        for(Arc a: arcs){
+            activeAnimations.add(Ani.to(a, ani.duration, ani.params, ani.value, ani.mode));
+        }
+
+        activeAnimations.removeIf(AniCore::isEnded);
     }
 
     @Override
