@@ -112,12 +112,8 @@ public class Funky extends PApplet {
         // set up background color of canvas
         backgroundColor = secondaryColor.copy();
 
-        // init our click animations
-        String clickAnimationPath = "./resources/times/click_anim.json";
-        clickAnimations = AnimationImport.importClickAnimation(this, clickAnimationPath, "click");
-
         // Poop related stuff
-        String poopAnimationPath = "./resources/times/poop_anim.json";
+        String poopAnimationPath = "./resources/json/animation/poop_anim.json";
         String[] poopAnimations = {"scale"};
         RGBaColor poopPrimaryColor = primaryColor.copy();
         RGBaColor poopSecondaryColor = secondaryColor.copy();
@@ -191,6 +187,10 @@ public class Funky extends PApplet {
                 innerLineCircleAnimations
         );
         shapes.put("inner_circle", innerCircle);
+
+        // init our click animations
+        String clickAnimationPath = "./resources/json/animation/click_anim.json";
+        clickAnimations = AnimationImport.importClickAnimation(this, clickAnimationPath, "click");
 
         // global animation stuff
         globalAnimationController = new GlobalAnimationController(
