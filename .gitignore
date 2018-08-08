@@ -5,6 +5,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+GDG2_Animation.iml
+
 # Sensitive or high-churn files
 .idea/**/dataSources/
 .idea/**/dataSources.ids
