@@ -181,8 +181,8 @@ public class Funky extends PApplet {
                 35,
                 0,
                 TWO_PI,
-                1,
-                45,
+                2,
+                20,
                 innerLineCircleAnimationPath,
                 innerLineCircleAnimations
         );
