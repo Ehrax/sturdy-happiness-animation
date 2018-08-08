@@ -151,7 +151,7 @@ public class Funky extends PApplet {
         shapes.put("outer_circle", outerCircle);
 
         // inner arc circle
-        String arcCircleAnimationPath = "./resources/json/animation/arcCircleAnim.json";
+        String arcCircleAnimationPath = "./resources/json/animation/arc_circle_anim.json";
         String[] arcCircleAnimations = {"alpha", "angle"};
         RGBaColor arcCirclePrimaryColor = primaryColor.copy();
         RGBaColor arcCircleSecondaryColor = secondaryColor.copy();
@@ -169,8 +169,8 @@ public class Funky extends PApplet {
         shapes.put("arc_circle", arcCircle);
 
         // inner circle
-        String innerLineCircleAnimationPath = "";
-        String[] innerLineCircleAnimations = {};
+        String innerLineCircleAnimationPath = "./resources/json/animation/inner_circle_anim.json";
+        String[] innerLineCircleAnimations = {"weight"};
         RGBaColor innerCirclePrimaryColor = primaryColor.copy();
         RGBaColor innerCircleSecondaryColor = secondaryColor.copy();
         innerCircle = new InnerCircle(
@@ -178,11 +178,11 @@ public class Funky extends PApplet {
                 innerCirclePrimaryColor,
                 innerCircleSecondaryColor,
                 30,
-                35,
+                55,
                 0,
                 TWO_PI,
-                2,
-                20,
+                0,
+                15,
                 innerLineCircleAnimationPath,
                 innerLineCircleAnimations
         );

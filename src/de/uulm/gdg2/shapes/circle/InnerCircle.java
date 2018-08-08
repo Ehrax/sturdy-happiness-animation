@@ -1,5 +1,8 @@
 package de.uulm.gdg2.shapes.circle;
 
+import de.looksgood.ani.Ani;
+import de.looksgood.ani.AniCore;
+import de.uulm.gdg2.animations.CustomAnimation;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.basic.InnerLine;
 import de.uulm.gdg2.util.RGBaColor;
@@ -72,7 +75,21 @@ public class InnerCircle extends OuterCircle {
     @Override
     public void update(float cue) {
 
-       // TODO trigger animations here
+
+        if (anis.size() == 0) {
+            return;
+        }
+        if (cue < anis.get(0).start) {
+            return;
+        }
+
+        CustomAnimation ani = anis.remove(0);
+
+        lines.forEach((l) -> {
+            activeAnimations.add(Ani.to(l, ani.duration, ani.params, ani.value, ani.mode));
+        });
+
+        activeAnimations.removeIf(AniCore::isEnded);
     }
 
     @Override

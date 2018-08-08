@@ -1,5 +1,8 @@
 package de.uulm.gdg2.shapes.circle;
 
+import de.looksgood.ani.Ani;
+import de.looksgood.ani.AniCore;
+import de.uulm.gdg2.animations.CustomAnimation;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.basic.OuterLine;
 import de.uulm.gdg2.util.RGBaColor;
@@ -71,47 +74,27 @@ public class OuterCircle extends BasicShape {
         }
     }
 
-    /**
-     * second constructor for InnerLineCircle because the draw method there is slightly different
-     * @param canvas
-     * @param primaryColor
-     * @param secondaryColor
-     * @param innerRadius
-     * @param outerRadius
-     * @param startToDrawLine
-     * @param endToDrawLine
-     * @param weight
-     * @param howMany
-     */
-    public OuterCircle(
-            PApplet canvas,
-            RGBaColor primaryColor,
-            RGBaColor secondaryColor,
-            float innerRadius,
-            float outerRadius,
-            float startToDrawLine,
-            float endToDrawLine,
-            float weight,
-            int howMany
-    ) {
-
-        super(canvas, primaryColor, secondaryColor);
-
-        this.innerRadius = innerRadius;
-        this.outerRadius = outerRadius;
-        this.startToDrawLine = startToDrawLine;
-        this.endToDrawLine = endToDrawLine;
-        this.weight = weight;
-        this.howMany = howMany;
-    }
-
     @Override
     public void update(float cue) {
 
-        // TODO trigger animations for the lines
         for (OuterLine outerLine : lines) {
             outerLine.update(cue);
         }
+        if (anis.size() == 0){
+            return;
+        }
+
+        if(cue < anis.get(0).start) {
+            return;
+        }
+
+        CustomAnimation ani = anis.remove(0);
+
+        lines.forEach((ol) -> {
+            activeAnimations.add(Ani.to(ol, ani.duration, ani.params, ani.value, ani.mode));
+        });
+
+        activeAnimations.removeIf(AniCore::isEnded);
     }
 
     @Override
