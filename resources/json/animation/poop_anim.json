@@ -1,5 +1,9 @@
 {
     "scale": [
+        {"start": 180, "end": 380, "value": 40, "easing": "cubic_in", "duration": 0.2, "delay": 1000},
+        {"start": 480, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.75, "delay": 1000}
+    ],
+    "scale_old": [
         {"start": 180, "end": 380, "value": 40, "easing": "cubic_in", "duration": 0.2},
         {"start": 480, "end": 1000, "value": 10, "easing": "bounce_in_out", "duration": 0.75},
         {"start": 1200, "end": 1400, "value": 40, "easing": "cubic_in", "duration": 0.2},
