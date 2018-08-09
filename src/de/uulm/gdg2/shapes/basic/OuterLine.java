@@ -1,7 +1,10 @@
 package de.uulm.gdg2.shapes.basic;
 
+import de.uulm.gdg2.controllers.AnimationImport;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.util.RGBaColor;
+
+import java.util.Collections;
 
 import processing.core.PApplet;
 
@@ -13,13 +16,14 @@ public class OuterLine extends BasicShape {
     public float y2;
 
     public float weight;
-    public float angle = 0;
+    public float angle;
 
     public OuterLine(PApplet canvas,
                      RGBaColor primaryColor,
                      RGBaColor secondaryColor,
                      int alpha,
                      float weight,
+                     float angle,
                      float x1, float y1, float x2, float y2
     ) {
 
@@ -30,6 +34,7 @@ public class OuterLine extends BasicShape {
         this.y1 = y1;
         this.x2 = x2;
         this.y2 = y2;
+        this.angle = angle;
 
         canvas.strokeCap(1);
     }

@@ -3,11 +3,13 @@ package de.uulm.gdg2.shapes.circle;
 import de.looksgood.ani.Ani;
 import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.animations.CustomAnimation;
+import de.uulm.gdg2.controllers.AnimationImport;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.basic.OuterLine;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import processing.core.PApplet;
 
@@ -23,6 +25,7 @@ public class OuterCircle extends BasicShape {
     public float centerY;
 
     public float weight;
+    public float angle;
 
     public int howMany;
 
@@ -51,11 +54,10 @@ public class OuterCircle extends BasicShape {
         this.endToDrawLine = endToDrawLine;
         this.howMany = howMany;
         this.weight = weight;
+        this.angle = 0;
 
         centerX = canvas.width / 2;
         centerY = canvas.height / 2;
-
-
     }
 
     @Override
@@ -83,6 +85,8 @@ public class OuterCircle extends BasicShape {
 
         lines = new ArrayList<>();
 
+        innerRadius += 0.15f;
+        System.out.println();
         for (float i = startToDrawLine; i < endToDrawLine; i += endToDrawLine / howMany) {
             OuterLine outerLine = new OuterLine(
                     canvas,
@@ -90,6 +94,7 @@ public class OuterCircle extends BasicShape {
                     secondaryColor,
                     255,
                     weight,
+                    angle,
                     PApplet.cos(i) * innerRadius,
                     PApplet.sin(i) * innerRadius,
                     PApplet.cos(i) * outerRadius,
