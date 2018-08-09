@@ -102,8 +102,8 @@ public class Funky extends PApplet {
      */
     public void initialize() {
 
-        player.getSong().rewind();
-        player.getSong().pause();
+        player.song.rewind();
+        player.song.pause();
 
         // setting up colors that we use :) TODO: color change has to be somehow dynamically
         primaryColor = RGBaColors.BLACK;
@@ -132,7 +132,7 @@ public class Funky extends PApplet {
 
         // outer line circle related stuff
         String outerCircleAnimationPath = "./resources/json/animation/outer_circle_anim.json";
-        String[] outerCircleAnimations = {"innerRadius"};
+        String[] outerCircleAnimations = {"innerRadius", "weight", "angle"};
         RGBaColor outerCirclePrimaryColor = primaryColor.copy();
         RGBaColor outerCircleSecondaryColor = secondaryColor.copy();
         outerCircle = new OuterCircle(
@@ -217,7 +217,8 @@ public class Funky extends PApplet {
                 helpMenu.draw();
                 return;
             case RUNNING:
-                globalAnimationController.drawAnimations(player.getSong().position());
+                globalAnimationController.drawAnimations(player.song.position());
+                System.out.println(player.song.position());
                 break;
             default:
                 break;
@@ -242,7 +243,7 @@ public class Funky extends PApplet {
                 aniState = MAIN;
                 break;
             case 'f':
-                player.getSong().skip(5000);
+                player.song.skip(5000);
             default:
                 break;
         }
@@ -252,9 +253,9 @@ public class Funky extends PApplet {
     public void playPause() {
         aniState = aniState == RUNNING ? PAUSED : RUNNING;
         if (aniState == RUNNING) {
-            player.getSong().play();
+            player.song.play();
         } else {
-            player.getSong().pause();
+            player.song.pause();
         }
     }
 

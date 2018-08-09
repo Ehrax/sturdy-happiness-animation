@@ -12,9 +12,10 @@ public class InnerLine extends OuterLine {
             RGBaColor secondaryColor,
             int alpha,
             float weight,
+            float angle,
             float x1, float y1, float x2, float y2) {
 
-        super(canvas, primaryColor, secondaryColor, alpha, weight, x1, y1, x2, y2);
+        super(canvas, primaryColor, secondaryColor, alpha, weight, angle,x1, y1, x2, y2);
 
         canvas.strokeCap(1);
     }

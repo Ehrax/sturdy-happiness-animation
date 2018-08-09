@@ -76,6 +76,8 @@ public abstract class AnimationImport {
             case "cubic_in":
                 e = AniConstants.CUBIC_IN;
                 break;
+            case "circ_in":
+                e = AniConstants.CIRC_IN;
             case "cubic_in_out":
                 e = AniConstants.CUBIC_IN_OUT;
             break;

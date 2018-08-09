@@ -14,6 +14,7 @@ import processing.core.PApplet;
 public class InnerCircle extends OuterCircle {
 
     public ArrayList<InnerLine> lines;
+    public float angle;
 
     public InnerCircle(
             PApplet canvas,
@@ -49,6 +50,7 @@ public class InnerCircle extends OuterCircle {
         this.endToDrawLine = endToDrawLine;
         this.howMany = howMany;
         this.weight = weight;
+        this.angle = 0;
 
         centerX = canvas.width/2;
         centerY = canvas.height/2;
@@ -61,6 +63,7 @@ public class InnerCircle extends OuterCircle {
                     secondaryColor,
                     255,
                     weight,
+                    angle,
                     PApplet.cos(i) * innerRadius,
                     PApplet.sin(i) * innerRadius,
                     PApplet.cos(i) * outerRadius,
