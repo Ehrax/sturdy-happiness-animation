@@ -239,7 +239,7 @@ public class Funky extends PApplet {
             case 'e':
                 break;
             case 'm':
-                // TODO reset Song and reset Animation array
+                initialize();
                 aniState = MAIN;
                 break;
             case 'f':

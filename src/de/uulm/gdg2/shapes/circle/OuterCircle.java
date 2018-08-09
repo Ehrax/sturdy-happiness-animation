@@ -3,11 +3,13 @@ package de.uulm.gdg2.shapes.circle;
 import de.looksgood.ani.Ani;
 import de.looksgood.ani.AniCore;
 import de.uulm.gdg2.animations.CustomAnimation;
+import de.uulm.gdg2.controllers.AnimationImport;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.shapes.basic.OuterLine;
 import de.uulm.gdg2.util.RGBaColor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import processing.core.PApplet;
 

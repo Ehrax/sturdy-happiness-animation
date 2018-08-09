@@ -1,7 +1,10 @@
 package de.uulm.gdg2.shapes.basic;
 
+import de.uulm.gdg2.controllers.AnimationImport;
 import de.uulm.gdg2.shapes.BasicShape;
 import de.uulm.gdg2.util.RGBaColor;
+
+import java.util.Collections;
 
 import processing.core.PApplet;
 
