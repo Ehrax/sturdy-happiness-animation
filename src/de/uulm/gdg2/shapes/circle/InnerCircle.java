@@ -54,7 +54,6 @@ public class InnerCircle extends OuterCircle {
         centerY = canvas.height/2;
 
         lines = new ArrayList<>();
-
         for(float i = startToDrawLine; i < endToDrawLine; i+= endToDrawLine / howMany) {
             InnerLine innerLine = new InnerLine(
                     canvas,
@@ -79,7 +78,7 @@ public class InnerCircle extends OuterCircle {
         if (anis.size() == 0) {
             return;
         }
-        if (cue < anis.get(0).start) {
+        if (cue <= anis.get(0).start) {
             return;
         }
 

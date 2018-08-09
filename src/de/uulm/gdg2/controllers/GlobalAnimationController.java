@@ -40,9 +40,12 @@ public class GlobalAnimationController {
 
     public void drawAnimations(float cue) {
 
-        if (cue > lastClickStart && cue <= lastClickEnd && anis.size() != 0) {
+        if (cue >= lastClickStart && cue <= lastClickEnd && anis.size() != 0) {
             canvas.background( primaryColor.v1, primaryColor.v2, primaryColor.v3);
-            shapes.forEach((k, s) -> s.updateToSecondaryColor());
+            shapes.forEach((k, s) -> {
+                s.updateToSecondaryColor();
+                s.update(cue);
+            });
 
             if (lastClickStart == anis.get(0).start) {
                 anis.remove(0);

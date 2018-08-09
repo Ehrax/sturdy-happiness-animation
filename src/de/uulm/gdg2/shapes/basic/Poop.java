@@ -49,7 +49,7 @@ public class Poop extends BasicShape {
         if (anis.size() == 0) {
             return;
         }
-        if (cue < anis.get(0).start) {
+        if (cue <= anis.get(0).start) {
             return;
         }
 

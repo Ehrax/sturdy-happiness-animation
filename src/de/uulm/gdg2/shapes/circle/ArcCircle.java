@@ -74,12 +74,11 @@ public class ArcCircle extends BasicShape {
 
         CustomAnimation ani = anis.remove(0);
 
-        // TODO trigger here ani event in arc
-
         for(Arc a: arcs){
             activeAnimations.add(Ani.to(a, ani.duration, ani.params, ani.value, ani.mode));
         }
 
+        activeAnimations.add(Ani.to(this, ani.duration, ani.params, ani.value, ani.mode));
         activeAnimations.removeIf(AniCore::isEnded);
     }
 

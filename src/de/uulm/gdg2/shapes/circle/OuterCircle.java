@@ -55,6 +55,32 @@ public class OuterCircle extends BasicShape {
         centerX = canvas.width / 2;
         centerY = canvas.height / 2;
 
+
+    }
+
+    @Override
+    public void update(float cue) {
+
+        for (OuterLine outerLine : lines) {
+            outerLine.update(cue);
+        }
+        if (anis.size() == 0){
+            return;
+        }
+
+        if(cue <= anis.get(0).start) {
+            return;
+        }
+
+        CustomAnimation ani = anis.remove(0);
+        activeAnimations.add(Ani.to(this, ani.duration, ani.params, ani.value, ani.mode));
+        draw();
+        activeAnimations.removeIf(AniCore::isEnded);
+    }
+
+    @Override
+    public void draw() {
+
         lines = new ArrayList<>();
 
         for (float i = startToDrawLine; i < endToDrawLine; i += endToDrawLine / howMany) {
@@ -72,34 +98,6 @@ public class OuterCircle extends BasicShape {
 
             lines.add(outerLine);
         }
-    }
-
-    @Override
-    public void update(float cue) {
-
-        for (OuterLine outerLine : lines) {
-            outerLine.update(cue);
-        }
-        if (anis.size() == 0){
-            return;
-        }
-
-        if(cue < anis.get(0).start) {
-            return;
-        }
-
-        CustomAnimation ani = anis.remove(0);
-
-        lines.forEach((ol) -> {
-            activeAnimations.add(Ani.to(ol, ani.duration, ani.params, ani.value, ani.mode));
-        });
-
-        activeAnimations.removeIf(AniCore::isEnded);
-    }
-
-    @Override
-    public void draw() {
-
         lines.forEach(BasicShape::draw);
     }
 

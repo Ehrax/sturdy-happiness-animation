@@ -79,6 +79,15 @@ public abstract class AnimationImport {
             case "cubic_in_out":
                 e = AniConstants.CUBIC_IN_OUT;
             break;
+            case "quint_in":
+                e = AniConstants.QUINT_IN;
+                break;
+            case "expo_in":
+                e = AniConstants.EXPO_IN;
+                break;
+            case "expo_out":
+                e = AniConstants.EXPO_OUT;
+                break;
             case "cubic_out":
                 e = AniConstants.CUBIC_OUT;
                 break;
