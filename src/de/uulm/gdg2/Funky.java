@@ -235,6 +235,7 @@ public class Funky extends PApplet {
                 }
                 break;
             case 'r':
+                initialize();
                 break;
             case 'e':
                 break;
