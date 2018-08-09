@@ -1,0 +1,14 @@
+{
+
+  "distanceFromCenter": [
+    {"start": 53963 , "end": 26328, "value": 400, "easing": "linear", "duration": 47.241}
+  ],
+  "alpha": [
+    {"start": 53963 , "end": 26328, "value": 255, "easing": "circ_in", "duration": 5.0},
+    {"start": 96000 , "end": 26328, "value": 0, "easing": "circ_out", "duration": 4.0}
+  ],
+
+  "angle": [
+    {"start": 53963 , "end": 26328, "value": 45, "easing": "linear", "duration": 47.241}
+  ]
+}

@@ -258,6 +258,10 @@ public class Funky extends PApplet {
         }
     }
 
+    public void saveSettings(){
+
+    }
+
     public void showHelpGui() { aniState = HELP; }
 
     public void showOptionGui() { aniState = OPTION; }

@@ -75,7 +75,7 @@ public class InnerCircle extends OuterCircle {
     public void update(float cue) {
 
 
-        if (anis.size() == 0) {
+       if (anis.size() == 0) {
             return;
         }
         if (cue <= anis.get(0).start) {
@@ -87,7 +87,6 @@ public class InnerCircle extends OuterCircle {
         lines.forEach((l) -> {
             activeAnimations.add(Ani.to(l, ani.duration, ani.params, ani.value, ani.mode));
         });
-
         activeAnimations.removeIf(AniCore::isEnded);
     }
 

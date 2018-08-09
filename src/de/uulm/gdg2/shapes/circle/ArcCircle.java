@@ -63,7 +63,6 @@ public class ArcCircle extends BasicShape {
 
     @Override
     public void update(float cue) {
-
         if (anis.size() == 0){
             return;
         }

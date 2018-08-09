@@ -116,7 +116,6 @@
     {"start": 57525 , "end": 26328, "value": 0, "easing": "circ_out", "duration": 0.3},
     {"start": 58447 , "end": 26328, "value": 7, "easing": "circ_in", "duration": 0.1},
     {"start": 58547 , "end": 26328, "value": 0, "easing": "circ_out", "duration": 0.3},
-
     {"start": 59477 , "end": 26328, "value": 7, "easing": "circ_in", "duration": 0.1},
     {"start": 59577 , "end": 26328, "value": 0, "easing": "circ_out", "duration": 0.3},
     {"start": 60646 , "end": 26328, "value": 7, "easing": "circ_in", "duration": 0.1},

@@ -14,5 +14,6 @@
     <orderEntry type="library" name="OpenGl" level="project" />
     <orderEntry type="library" name="opengl" level="project" />
     <orderEntry type="library" name="opengl" level="project" />
+    <orderEntry type="library" name="gluegen-rt-natives-linux-aarch64" level="project" />
   </component>
 </module>
